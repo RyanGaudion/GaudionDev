@@ -1,9 +1,9 @@
 import './globals.css'
 
-export const metadata = {
+/*export const metadata = {
   title: 'Gaudion.Dev',
   description: 'Personal Portfolio of Ryan Gaudion',
-}
+}*/
 
 export default function RootLayout({
   children,
