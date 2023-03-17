@@ -8,8 +8,8 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 
+import Image from 'next/image'
 
-import HelloWorld from "../blogs/hello.mdx"
 import Link from 'next/link'
 
 export default function Home() {
@@ -33,13 +33,12 @@ export default function Home() {
         Hello world!
       </h1>
 
-      <div>
-        {JSON.stringify(blogs)}
-      </div>
-
-      <div className="prose prose-sm md:prose-base lg:prose-lg prose-slate dark:prose-invert ">
-        <HelloWorld/>
-      </div>
+      {blogs.map((blog, index) => (
+        <Link href={'/blog/' + blog.slug} passHref key={index}>
+          <h5 className="card-title">{blog.meta.title}</h5>
+          <p className="card-text">{blog.meta.description}</p>
+        </Link>
+      ))}
 
     </main>
   )
