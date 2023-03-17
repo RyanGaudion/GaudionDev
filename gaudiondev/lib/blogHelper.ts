@@ -6,11 +6,15 @@ const blogDir = "blogs"
 
 
 export interface Blog {
-    meta: {
-        [key: string]: any;
-    },
+    meta: BlogMeta
     slug: string
     content: string
+}
+
+export interface BlogMeta{
+    title?: string
+    date?: Date
+    description?: string
 }
 
 export interface BlogItem {
@@ -27,11 +31,21 @@ const getBlogFiles = () => fs.readdirSync(path.join(blogDir))
 const readBlogFile = (filename : string) => fs.readFileSync(path.join(blogDir, filename), 'utf-8')
 
 const getBlogFromFile = (filename : string) : Blog => {
-    const { data: meta, content } = matter(readBlogFile(filename)) 
+    const { data, content } = matter(readBlogFile(filename)) 
     const slug = getSlugFromFileName(filename)
+
+    const meta = cleanMetaFromMatter(data)
 
     return ({ meta, slug, content} )
 }
+
+const cleanMetaFromMatter = (meta : {[key: string]: any }) : BlogMeta => {
+    return {
+        ...meta,
+        date: new Date(meta.date) ?? null
+    }
+}
+
 
 const getBlogItemFromFile = (filename : string) : BlogItem => {
     return {

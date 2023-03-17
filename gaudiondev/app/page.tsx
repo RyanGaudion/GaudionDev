@@ -1,3 +1,4 @@
+import BlogPreviewComponent from '@/components/BlogPreview';
 import { getAllBlogs } from '@/lib/blogHelper';
 
 import Image from 'next/image'
@@ -21,14 +22,11 @@ export default function Home() {
           Latest Blogs
         </h2>
 
-        <div className='py-2'>
+        <div className='py-4 flex flex-col gap-4'>
           {blogs.map((blog, index) => (
-            <Link href={'/blog/' + blog.slug} passHref key={index}>
-              <div className='py-2 pl-4'>
-                <h5 className="text-lg font-bold">{blog.meta.title || "No Title"}</h5>
-                <p className="text-base">{blog.meta.description || "No Description"}</p>
-              </div>
-            </Link>
+            <>
+              <BlogPreviewComponent blog={blog}/>
+            </>
           ))}
         </div>
           

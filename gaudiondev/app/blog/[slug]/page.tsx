@@ -10,14 +10,14 @@ export async function generateStaticParams() {
 
 //Fix Any
 export default function Blog({ params } :any) {
-    const props = getBlog(params.slug);
+    const blog = getBlog(params.slug);
 
     return (
         <main className="wrapper">
             <div className='prose prose-sm md:prose-base lg:prose-lg prose-slate dark:prose-invert '>
-
+                <h1>{blog.meta.title}</h1>
                 {/* @ts-expect-error Server Component*/}
-                <MDXRemote source={props.content} components={{...GetAllMDXComponents()}} />
+                <MDXRemote source={blog.content} components={{...GetAllMDXComponents()}} />
             </div>
         </main>
     )
