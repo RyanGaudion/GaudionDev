@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 //https://www.makeuseof.com/nextjs-google-analytics/
 
 export const pageview = (GA_MEASUREMENT_ID, url) => {
