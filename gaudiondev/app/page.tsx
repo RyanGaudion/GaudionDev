@@ -28,7 +28,7 @@ export default function Home() {
   })
 
   return (
-    <main className="max-w-3xl flex flex-col mx-auto py-20">
+    <main className="wrapper">
       <h1 className="text-3xl font-bold">
         Ryan Gaudion
       </h1>
@@ -42,11 +42,15 @@ export default function Home() {
         <div className='py-2'>
           {blogs.map((blog, index) => (
             <Link href={'/blog/' + blog.slug} passHref key={index}>
-              <h5 className="card-title">{blog.meta.title}</h5>
-              <p className="card-text">{blog.meta.description}</p>
+              <div className='py-2 pl-4'>
+                <h5 className="text-lg font-bold">{blog.meta.title || "No Title"}</h5>
+                <p className="text-base">{blog.meta.description || "No Description"}</p>
+              </div>
             </Link>
           ))}
         </div>
+          
+        
       </section>
 
       

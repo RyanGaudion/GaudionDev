@@ -35,9 +35,9 @@ export default function Post({ params } :any) {
     const props = getPost(params);
 
     return (
-        <main className="max-w-3xl flex flex-col mx-auto py-20">
+        <main className="wrapper">
             <div className='prose prose-sm md:prose-base lg:prose-lg prose-slate dark:prose-invert '>
-                
+
                 {/* @ts-expect-error Server Component*/}
                 <MDXRemote source={props.content} components={{Button}} />
             </div>
