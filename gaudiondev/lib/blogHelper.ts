@@ -27,12 +27,15 @@ const getSlugFromFileName = (filename: string) => filename.replace('.mdx', '');
 const getFileNameFromSlug = (slug: string) => slug + '.mdx'
 
 
-const getBlogFiles = () => fs.readdirSync(path.join(blogDir))
+const getBlogFiles = () => fs.readdirSync(path.join(blogDir)).filter(x => {const y = x.split('.'); return y[y.length - 1] === "mdx"})
 
-const readBlogFile = (filename : string) => fs.readFileSync(path.join(blogDir, filename), 'utf-8')
+const readBlogFile = (filename : string) => {try {return fs.readFileSync(path.join(blogDir, filename), 'utf-8')} catch { return null}}
 
-const getBlogFromFile = (filename : string) : Blog => {
-    const { data, content } = matter(readBlogFile(filename)) 
+const getBlogFromFile = (filename : string) : Blog | null => {
+    const file = readBlogFile(filename)
+    if(file == null){return null}
+
+    const { data, content } = matter(file) 
     const slug = getSlugFromFileName(filename)
 
     const meta = cleanMetaFromMatter(data)
@@ -72,7 +75,7 @@ export function getAllBlogsInfo(){
     return files.map(filename => getBlogItemFromFile(filename))
 }
 
-export function getBlog(slug : string) : Blog{
+export function getBlog(slug : string) : Blog | null{
     const filename = getFileNameFromSlug(slug)
 
     return getBlogFromFile(filename)
