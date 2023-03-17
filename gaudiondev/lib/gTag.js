@@ -1,8 +1,6 @@
 //https://www.makeuseof.com/nextjs-google-analytics/
 
-export const GA_MEASUREMENT_ID = "G-9N7KFV3730";
-
-export const pageview = (url) => {
+export const pageview = (GA_MEASUREMENT_ID, url) => {
     window.gtag("config", GA_MEASUREMENT_ID, {
         page_path: url,
     });
