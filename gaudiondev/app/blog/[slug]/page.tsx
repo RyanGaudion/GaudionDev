@@ -1,45 +1,23 @@
-import fs from 'fs'
-import path from 'path'
-import matter from 'gray-matter'
-
-import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 
-import Button from '@/mdxComponents/Button'
+import { getAllBlogsInfo, getBlog } from '@/lib/blogHelper'
+import { GetAllMDXComponents } from "@/lib/mdxHelper";
+
 
 export async function generateStaticParams() {
-    const files = fs.readdirSync(path.join('blogs'))
-
-    const paths = files.map(filename => ({
-        slug: filename.replace('.mdx', '')
-    }))
-
-
-    return paths
+    return getAllBlogsInfo()
 }
 
-function getPost({slug}:any){
-    const markdownWithMeta = fs.readFileSync(path.join('blogs',slug + '.mdx'), 'utf-8')
-
-    const { data: frontMatter, content } = matter(markdownWithMeta)
-
-    return {
-        frontMatter,
-        slug,
-        content
-    }
-}
-  
 //Fix Any
-export default function Post({ params } :any) {
-    const props = getPost(params);
+export default function Blog({ params } :any) {
+    const props = getBlog(params.slug);
 
     return (
         <main className="wrapper">
             <div className='prose prose-sm md:prose-base lg:prose-lg prose-slate dark:prose-invert '>
 
                 {/* @ts-expect-error Server Component*/}
-                <MDXRemote source={props.content} components={{Button}} />
+                <MDXRemote source={props.content} components={{...GetAllMDXComponents()}} />
             </div>
         </main>
     )
