@@ -25,7 +25,7 @@ export default function Home() {
         <div className='py-4 flex flex-col gap-4'>
           {blogs.map((blog, index) => (
             <>
-              <BlogPreviewComponent blog={blog}/>
+              {blog && <BlogPreviewComponent blog={blog}/>}
             </>
           ))}
         </div>
