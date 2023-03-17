@@ -1,13 +1,24 @@
 import { MDXRemote } from 'next-mdx-remote/rsc'
-
 import { getAllBlogsInfo, getBlog } from '@/lib/blogHelper'
 import { GetAllMDXComponents } from "@/lib/mdxHelper";
-
 import { notFound } from 'next/navigation';
 
 
 export async function generateStaticParams() {
     return getAllBlogsInfo()
+}
+
+export const metadata = {
+    
+}
+
+export async function generateMetadata({ params, searchParams } : any) {
+    const blog = getBlog(params.slug);
+
+    return{
+        title: blog?.meta?.title ?? "Ryan Gaudion - Blog",
+        description: blog?.meta?.description ?? "Ryan Gaudion - Blog",
+    }
 }
 
 //Fix Any
