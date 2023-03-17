@@ -1,5 +1,5 @@
 import { Blog } from "@/lib/blogHelper";
-import { timeSince } from "@/lib/dataHelper";
+import { dateTimeString, timeSince } from "@/lib/dataHelper";
 
 import Link from 'next/link'
 
@@ -19,7 +19,7 @@ export default function BlogPreviewComponent(params: BlogPreviewComponentParams)
                     <p className="text-base">{blog.meta.description || "No Description"}</p>
                 </div>
                 <div className="my-auto text-slate-300">
-                    <p>{timeSince(blog.meta.date)} ago</p>
+                    <p title={dateTimeString(blog.meta.date)}>{timeSince(blog.meta.date)} ago</p>
                 </div>
             </div>
         </Link>

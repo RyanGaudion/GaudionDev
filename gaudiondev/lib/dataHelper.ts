@@ -29,3 +29,11 @@ export function timeSince(date? : Date) : string {
     }
     return Math.floor(seconds) + " seconds";
   }
+
+export function dateTimeString(date? : Date ) : string{
+    if (date == null) {return ""}
+
+    const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+
+    return date.toLocaleString(undefined, options)
+}
