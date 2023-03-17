@@ -3,6 +3,8 @@ import { MDXRemote } from 'next-mdx-remote/rsc'
 import { getAllBlogsInfo, getBlog } from '@/lib/blogHelper'
 import { GetAllMDXComponents } from "@/lib/mdxHelper";
 
+import { notFound } from 'next/navigation';
+
 
 export async function generateStaticParams() {
     return getAllBlogsInfo()
@@ -11,6 +13,10 @@ export async function generateStaticParams() {
 //Fix Any
 export default function Blog({ params } :any) {
     const blog = getBlog(params.slug);
+
+    if(!blog){
+        return notFound;
+    }
 
     return (
         <main className="wrapper">
