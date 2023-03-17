@@ -28,17 +28,28 @@ export default function Home() {
   })
 
   return (
-    <main className="">
-      <h1 className="text-3xl font-bold underline">
-        Hello world!
+    <main className="max-w-3xl flex flex-col mx-auto py-20">
+      <h1 className="text-3xl font-bold">
+        Ryan Gaudion
       </h1>
 
-      {blogs.map((blog, index) => (
-        <Link href={'/blog/' + blog.slug} passHref key={index}>
-          <h5 className="card-title">{blog.meta.title}</h5>
-          <p className="card-text">{blog.meta.description}</p>
-        </Link>
-      ))}
+
+      <section className='py-10'>
+        <h2 className='text-2xl font-bold'>
+          Latest Blogs
+        </h2>
+
+        <div className='py-2'>
+          {blogs.map((blog, index) => (
+            <Link href={'/blog/' + blog.slug} passHref key={index}>
+              <h5 className="card-title">{blog.meta.title}</h5>
+              <p className="card-text">{blog.meta.description}</p>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      
 
     </main>
   )
