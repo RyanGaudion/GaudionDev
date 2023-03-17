@@ -15,6 +15,7 @@ export interface BlogMeta{
     title?: string
     date?: Date
     description?: string
+    author?: string
 }
 
 export interface BlogItem {
@@ -42,6 +43,7 @@ const getBlogFromFile = (filename : string) : Blog => {
 const cleanMetaFromMatter = (meta : {[key: string]: any }) : BlogMeta => {
     return {
         ...meta,
+        author: meta.author ?? "Ryan Gaudion",
         date: new Date(meta.date) ?? null
     }
 }
