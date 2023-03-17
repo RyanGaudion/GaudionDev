@@ -8,10 +8,6 @@ export async function generateStaticParams() {
     return getAllBlogsInfo()
 }
 
-export const metadata = {
-    
-}
-
 export async function generateMetadata({ params, searchParams } : any) {
     const blog = getBlog(params.slug);
 
