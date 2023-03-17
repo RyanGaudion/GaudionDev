@@ -16,8 +16,8 @@ export async function generateMetadata({ params, searchParams } : any) {
     const blog = getBlog(params.slug);
 
     return{
-        title: blog?.meta?.title ?? "Ryan Gaudion - Blog",
-        description: blog?.meta?.description ?? "Ryan Gaudion - Blog",
+        title: blog?.meta?.title ?? "Gaudion.Dev Blog",
+        description: blog?.meta?.description ?? "Gaudion.Dev Blog",
     }
 }
 
