@@ -1,3 +1,5 @@
+import Button from "./mdxComponents/Button"
+
 //https://beta.nextjs.org/docs/guides/mdx
 
 // This file allows you to provide custom React components
@@ -15,5 +17,5 @@ function H2({ children }) {
 //TODO <-- fix amy[]
 export function useMDXComponents(components : any[]) {
     //return { h1: H1, h2: H2, ...components };
-    return {...components}
+    return {Button, ...components}
 }
