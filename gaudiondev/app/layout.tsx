@@ -1,5 +1,8 @@
 import './globals.css'
 import Script from 'next/script'
+import { useRouter } from 'next/router';
+import { useEffect } from "react";
+import * as gtag from "../lib/gtag"
 
 
 export const metadata = {
@@ -12,6 +15,22 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  {/* Google Analytics*/}
+  const router = useRouter();
+  useEffect(() => {
+    const handleRouteChange = (url: any) => {
+      gtag.pageview(url);
+    };
+
+    router.events.on("routeChangeComplete", handleRouteChange);
+    
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange);
+    };
+  }, [router.events]);
+  {/* -- End - Google Analytics -- */}
+
+  
   return (
     <html lang="en-GB">
       {/* Google Analytics*/}
