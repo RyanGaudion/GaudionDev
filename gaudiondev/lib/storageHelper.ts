@@ -1,20 +1,13 @@
-'use client';
+import "client-only";
 
-import { useState, useEffect } from "react";
+export function getLocalStorage(key: string, defaultValue:any){
+    const stickyValue = localStorage.getItem(key);
 
-export function useStickyState(defaultValue : any, key: string) {
-
-
-    const [value, setValue] = useState(() => {
-      const stickyValue = typeof window !== 'undefined' ? localStorage.getItem(key) : defaultValue;
-      return stickyValue !== null
+    return (stickyValue !== null && stickyValue !== 'undefined')
         ? JSON.parse(stickyValue)
         : defaultValue;
-    });
-    useEffect(() => {
-        if (typeof window !== 'undefined') {
-            localStorage.setItem(key, JSON.stringify(value));
-        }
-    }, [key, value]);
-    return [value, setValue];
+}
+
+export function setLocalStorage(key: string, value:any){
+    localStorage.setItem(key, JSON.stringify(value));
 }
