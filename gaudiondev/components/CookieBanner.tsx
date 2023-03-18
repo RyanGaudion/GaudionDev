@@ -5,34 +5,30 @@
 
 import Script from 'next/script'
 
-
+import { useState, useEffect } from 'react';
+import { useStickyState } from '@/lib/storageHelper';
 
 
 export default function CookieBanner(){
-    /*
-        gtag('consent', 'update', {
-            'analytics_storage': 'granted'
-        });
-    */
 
-   
+    const [cookieConsent, setCookieConsent] = useStickyState(false, "cookieConsent")
+
+    useEffect(() => {
+        const newValue = cookieConsent ? 'granted' : 'denied'
+
+        window.gtag("consent", 'update', {
+            'analytics_storage': newValue
+        });
+
+        console.log("Cookie Consent: ", cookieConsent)
+
+    }, [cookieConsent]);
 
     return (
         <>
-            <Script id='google-analytics-consent' strategy="afterInteractive"
-                dangerouslySetInnerHTML={{
-                __html: `
-                function consentGranted() {
-                    gtag('consent', 'update', {
-                        'analytics_storage': 'granted'
-                    });
-                    console.log("Working");
-                }
-                `,
-            }} />
-
             <div className="w-min absolute bottom-0 mx-auto left-0 right-0">
-                <button onClick={() => {window["consentGranted"]() ;}}>Yes</button>
+                <button onClick={() => setCookieConsent(false)}>No</button>
+                <button onClick={() => setCookieConsent(true)}>Yes</button>
             </div>
         </>
 
