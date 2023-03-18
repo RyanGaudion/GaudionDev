@@ -1,4 +1,4 @@
-import CustomLink from "@/components/mdx/CustomLink"
+import CustomLink from "../components/mdx/CustomLink"
 import YouTube from "../components/mdx/YouTube"
 import Button from "../components/mdx/YouTube"
 
