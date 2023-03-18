@@ -58,6 +58,11 @@ const getBlogItemFromFile = (filename : string) : BlogItem => {
     }
 }
 
+const filterNewToOld = (blogs : (Blog | null)[]) => {
+    return blogs.sort((a, b) => (new Date(b?.meta?.date ?? new Date()).getTime() - new Date(a?.meta?.date ?? new Date()).getTime()));
+}
+
+
 
 export function getAllBlogs(){
     const files = getBlogFiles();
@@ -66,7 +71,7 @@ export function getAllBlogs(){
         return getBlogFromFile(filename)
       })
 
-    return blogs;
+    return filterNewToOld(blogs)
 }
 
 export function getAllBlogsInfo(){

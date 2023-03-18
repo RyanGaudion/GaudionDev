@@ -1,5 +1,7 @@
-import Button from "../components/mdx/Button"
+import CustomLink from "@/components/mdx/CustomLink"
+import YouTube from "../components/mdx/YouTube"
+import Button from "../components/mdx/YouTube"
 
 export function GetAllMDXComponents(){
-    return {Button}
+    return {Button, YouTube, a: CustomLink}
 }

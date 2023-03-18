@@ -1,0 +1,77 @@
+---
+title: Installing Raspbian And Enabling SSH - Headless Setup - Raspberry Pi Tutorial Part 1
+date: '15 May 2020 12:00'
+description: In this Raspberry Pi Setup tutorial, I'll show you how to set up your Raspberry Pi without plugging it into a display. This is useful when you want to get up and running quickly.
+#tags: ['functions', 'javascript']
+---
+
+> This Blog post was written for everybitelectronics.co.uk which went live in 2019 and expired in 2023.
+
+In this Raspberry Pi Setup tutorial, I'll show you how to set up your Raspberry Pi without plugging it into a display. This is useful when you want to get up and running quickly. This tutorial is the written version of the following video so feel free to watch that first:
+
+
+<YouTube id="anQgEc13wus"/>
+
+To install Raspbian on your Raspberry Pi, you're going to need the following:  
+1) **[Raspberry Pi](https://www.amazon.co.uk/Raspberry-Pi-Model-4GB/dp/B09TTNF8BT)** (Of course) - I use a [Raspberry Pi 3](https://amzn.to/39nDlab) in this video, but you can use whichever model you have.  
+2) [**Micro SD Card**](https://amzn.to/30wkVzX) (Or SD Card if you have an older PI) - I recommend at least 8gb for this installation but I use a 32Gb in the video.  
+3) **[SD Card Reader](https://amzn.to/32HNcGG)** - Doesn't matter if this is built into your laptop or is external, we'll need some way to transfer the files to the Pi.  
+4) **Internet Connection** - Due to the fact you're reading this I'm presuming that you have an internet connection.
+
+Step 1 - Installing Raspbian on the SD Card
+-------------------------------------------
+
+First, we need to download the Raspbian image from the following link:  
+[https://www.raspberrypi.org/downloads/raspbian/](https://www.raspberrypi.org/downloads/raspbian/)  
+  
+Now with Linux Distribution, we can't just drag and drop the files onto the SD card. We need to burn the “image” of the operating system onto the SD Card. To do this, plug in your SD Card and download either [Win32 Disk Imager](https://sourceforge.net/projects/win32diskimager/) or the official [Raspberry Pi Imager](https://www.raspberrypi.org/downloads/).
+
+
+Once you've loaded up the software press the directory button to select the Raspbian Image file that we downloaded previously ( .img file).  
+Now change the drive letter to the letter of your SD Card. Once this is done, click “Write” and wait for the process to complete.
+
+Step 2 - Enabling SSH
+---------------------
+
+SSH stands for Secure Shell and will allow us to control our Raspberry Pi without connecting a display to it. SSH isn't enabled by default on the Pi, however, we can set it up without turning on the file. Open up File Explorer (Windows) or Finder (Mac). Make sure that you have file extension turned on. To do this on Windows go:
+
+**View --> Show and Hide --> File Name Extensions (Make sure it is ticked).**
+
+Now we can go to our SD Card and:
+
+**Right-Click --> New --> Text File**
+
+We want to name our file **ssh** (all lowercase). We also want to remove the **.txt** on the end.
+
+With this file created, our Pi is now ready to connect to. Insert the SD card into the Pi, Insert an Ethernet Cable and plug-in Power
+
+Step 3 - Finding the Pi on your network
+---------------------------------------
+
+To connect to the Pi we first need to know it's IP Address. To find this we can either check our router's Admin page or use a 3rd party tool to find it out. In the video, I used [Advanced IP Scanner](https://www.advanced-ip-scanner.com/), but you can also use [Nmap](https://nmap.org/).
+
+Run the scan from either tool and write down the IP Address of any devices with either the Name or Manufacturer set to “Raspberry Pi”. If your scan doesn't find your Pi, try unplugging all cables from the Pi (Including Power) and then plugging all back in again and rerunning the scan.
+
+Step 4 - Connecting to your Pi
+------------------------------
+
+To connect to the Pi you will need an SSH Client. In the video, I use Putty which can be downloaded from [here](https://www.putty.org/).
+
+
+In the Host Name box, enter the IP Address of your Raspberry Pi, which we found out in step 3. Once you've done this click “Open” and you will be greeted with a terminal for your Raspberry Pi prompting you to sign in. Use the following credentials to sign in:
+
+**Username -** pi  
+**Password -** raspberry
+
+Note: When typing in your password, you won't see it being displayed. Just click enter once you've typed it in.
+
+Step 5 - Changing the default password
+--------------------------------------
+
+Now that you're signed in, you're going to want to change your password. To do that type in the following command:
+
+**passwd**
+
+It will prompt you to type in your current password (raspberry) and then for you to enter a new password.
+
+That's all, your Raspberry Pi setup is now complete! If you have any issues or comments feel free to comment below or on the YouTube video and we'll try our best to reply to them all!
