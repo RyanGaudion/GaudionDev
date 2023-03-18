@@ -1,0 +1,125 @@
+---
+title: Accessing Your Pi Remotely From Anywhere In The World - VNC Connect - Raspberry Pi Tutorial Part 4  
+date: '10 Jul 2020 12:00'
+description: In this tutorial, I'm going to show you how to connect to your Raspberry Pi's desktop from anywhere in the world. To do with we will be using VNC Connect which will allow you to remotely control your Pi even when you're not on the same internet connection.
+#tags: ['functions', 'javascript']
+---
+
+<YouTube id="gCbGmAFqLoU"/>
+
+In this tutorial, I'm going to show you how to connect to your Raspberry Pi's desktop from anywhere in the world. To do with we will be using VNC Connect which will allow you to remotely control your Pi even when you're not on the same internet connection. We won't just have the command line interface from [part 1 in the series](/blog/installing-raspbian-and-enabling-ssh/) but we'll also have access to the desktop environment GUI.  
+  
+Once again this tutorial is accompanied by the following video. You can either watch the video or follow along with the blog post. The timestamps for each section of the video will be included in the headings.
+
+Step 1 - Update our system (0:41)
+---------------------------------
+
+Before we can connect to our Pi we need to install the correct software onto it. We are going to do this with commands so open up a terminal and follow along.  
+  
+The first command we need to run will update our list of available packages to make sure we are installing the most up to date version of VNC:
+
+`sudo apt-get update`
+
+The next command we need to do will update all the software installed on our Pi. This will make sure our system is up to date before we install anything new:
+
+`sudo apt-get upgrade`
+
+Optionally we can also remove any packages/software that isn't required anymore. To do this we can run the following command:
+
+`sudo apt autoremove`
+
+Step 2 - Install the VNC server on our Pi (0:57)
+------------------------------------------------
+
+With our Pi now up to date, we can install VNC server onto our Pi. We will do this with the following command:
+
+`sudo apt-get install realvnc-vnc-server`
+
+Step 3 - Enable VNC on our Pi (1:18)
+------------------------------------
+
+To enable VNC on our Pi we will use the `Raspi-Config` tool. To run this tool we will use the following command:
+
+`sudo raspi-config`
+
+This command will load up the config user interface. Use your arrow keys to navigate this menu.  
+  
+We want to move down to `Interfacing Options` then navigate to VNC. Upon entering VNC you will see the popup (see below). If your popup is asking to enable VNC then submit `Yes`. However, if your popup is requesting to disable then submit `No`.
+
+With VNC enabled we can now exit the menu. We can do this by pressing the right arrow key twice until we are over the Finish button.
+
+Step 4 - Restart your Pi (1:45)
+-------------------------------
+
+For these changes to take place, we need to restart our Raspberry Pi. In order to do this we can run the following command:
+
+`sudo reboot`
+
+Step 5 - Installing VNC Viewer (1:59)
+-------------------------------------
+
+You can connect to the Pi from a multitude of different operating systems including mobile phones. In this tutorial, I'll show you how to connect from a Windows machine, but make sure to check out the [Real VNC website](https://www.realvnc.com/en/connect/download/viewer/) for a full list of supported devices.  
+  
+Let's download the Real VNC Viewer on our PC to connect to our Pi. You can download the software from [here](https://www.realvnc.com/en/connect/download/viewer/).  
+  
+Once downloaded run the setup file to install the viewer. Make sure to select the option for a desktop shortcut if required.
+
+
+Step 6 - Connect to the Pi Locally (2:46)
+-----------------------------------------
+
+Run the VNC Viewer application on your windows machine. In the entry at the top of the application enter the IP Address of your Raspberry Pi. Click connect and it will load up a prompt asking for the Pi's username and password. By default (if you haven't changed them) the credentials required are:  
+  
+username - `pi`  
+password - `raspberry`  
+  
+Click “OK” and you will now be connected to the desktop of your Raspberry Pi.
+
+> **Note** - this will only connect you locally. Follow the next steps to connect from anywhere in the world.
+
+Step 7 - Change the resolution of the desktop (3:27)
+----------------------------------------------------
+
+Initially, the resolution of the desktop isn't great. It's usually quite small making all the icons and buttons very large. To overcome this, we can change the size of the desktop. To do this we need a terminal on the Pi, we can either do this with Putty (SSH) or with the desktop through VNC. We need to run the following command once we have a terminal open:
+
+`sudo raspi-config`
+
+Use your arrow keys to navigate to advanced options. From this sub-menu navigate to resolution. Here we can pick the resolution that we desire. Here I recommend using any of the following modes:
+
+*   16 - 1024x768 (For small/old monitors)
+*   85 - 1280 x 720 (For older HD monitors)
+*   82 - 1920 x 1080 (For modern monitors)
+
+
+For these options to take work correctly we need to make sure the GPU has enough memory available to itself. While in Raspi-Config we can navigate to Advanced Options again and now navigate to Memory Split. Here we need to make sure the amount of memory available to the GPU is at least 128mb.
+
+
+Finally, reboot the Raspberry Pi for these resolution changes to take place:
+
+`sudo reboot`
+
+Step 8 - Accessing the Pi from anywhere in the world (5:10)
+-----------------------------------------------------------
+
+Currently, we have a Pi we can access from anywhere within our network. But what if we want to access it while at work, a friends house or check up on it while on holiday? To do this we need first need to [create an account here](https://manage.realvnc.com/en/auth) for Real VNC. Just follow the instructions to create the account.  
+  
+With the account created we need to link it to our Pi. To do this go to the desktop of your Pi and open RealVNC Server. A popup should appear.
+
+Click the settings button in the top right-hand corner and then click “Licensing”. Now we want to choose the first option - “Sign in to your Real VNC Account”.  
+  
+Click next and input your email and password for the RealVNC account that we just created. Once done, click sign in.  
+  
+Here we can choose a name for the computer, I just left mine as `raspberrypi`.
+
+Step 9 - Testing our access (6:02)
+----------------------------------
+
+If we load RealVNC Viewer back up and click sign-in in the top right-hand corner, we can then enter our username and password.  
+  
+Once signed in we should see our 'teams' along the left-hand side. Here we can select our team and then we'll see our Pi. Double click this to connect to our Pi and enter your username and password when prompted.  
+  
+If you get a Windows Defender prompt appear then make sure to “Allow Access”
+
+To access the Pi from other operating systems such as iOS, Andriod or Linux then make sure to download the VNC Viewer application for that device, sign in, and then you'll be able to access your Pi from your mobile devices too.
+
+That's all, VNC is all setup - you can now access your Pi from anywhere in the world!
