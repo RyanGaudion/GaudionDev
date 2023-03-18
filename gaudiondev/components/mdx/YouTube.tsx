@@ -7,10 +7,9 @@ export default function YouTube ({ id } : YouTubeProps){
   return (
     <div>
       <iframe
-        width="100%"
-        height="450"
+        className="aspect-video w-full"
         src={"https://www.youtube.com/embed/" + id}
-        title="YouTube video player"
+        title="YouTube Video Player"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       ></iframe>
     </div>
