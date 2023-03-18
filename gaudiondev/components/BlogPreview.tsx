@@ -15,10 +15,10 @@ export default function BlogPreviewComponent(params: BlogPreviewComponentParams)
         <Link href={'/blog/' + blog.slug} passHref key={blog.slug}>
             <div className='py-2 px-2 md:px-4 flex-col flex md:flex-row justify-between align-middle gap-1 md:gap-2'>
                 <div>
-                    <h5 className="text-xl font-bold">{blog.meta.title || "No Title"}</h5>
+                    <h3 className="text-xl font-bold">{blog.meta.title || "No Title"}</h3>
                     <p className="text-base text-gray-200">{blog.meta.description || "No Description"}</p>
                 </div>
-                <div className="text-sm md:text-base my-auto text-gray-500">
+                <div className="text-sm md:text-base my-auto text-gray-400">
                     <p title={dateTimeString(blog.meta.date)}>{timeSince(blog.meta.date)} ago</p>
                 </div>
             </div>
