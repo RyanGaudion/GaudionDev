@@ -2,8 +2,8 @@ import './globals.css'
 import GoogleAnaytics from '@/components/GoogleAnalytics';
 
 export const metadata = {
-  title: 'Gaudion.Dev',
-  description: 'Ryan Gaudion\'s Personal Portfolio Site',
+  title: 'Ryan Gaudion - Software Development Portfolio & Programming Blog',
+  description: 'Personal Portfolio Site with blogs about software development. Written in Next JS by Ryan Gaudion.',
 }
 
 export default function RootLayout({
