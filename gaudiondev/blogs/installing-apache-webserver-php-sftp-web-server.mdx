@@ -1,0 +1,95 @@
+---
+title: Installing Apache Webserver + Php + Setting Up Sftp - Web Server - Raspberry Pi Tutorial Part 2
+date: '30 May 2020 12:00'
+description: In this tutorial, I'm going to show you how to set up a basic Raspberry Pi Webserver. This web server will run on Apache but will also have PHP installed. Allowing you to run .html and .php web files. In addition to this, we are going to set up SFTP (Secure File Transfer Protocol) so that we can remotely update the files on our web server without having to plug our raspberry pi into a display. 
+#tags: ['functions', 'javascript']
+---
+
+In this tutorial, I'm going to show you how to set up a basic [Raspberry Pi](https://www.raspberrypi.org/) Webserver. This web server will run on Apache but will also have PHP installed. Allowing you to run .html and .php web files. In addition to this, we are going to set up SFTP (Secure File Transfer Protocol) so that we can remotely update the files on our web server without having to plug our raspberry pi into a display. This tutorial is the written version of the following video so feel free to watch that first:
+
+<YouTube id="4xmxgCl1Wmo"/>
+
+Before starting this tutorial, you will need to have putty set up on the Pi. To learn how to do this, check out our [previous blog post](/blog/installing-raspbian-and-enabling-ssh).
+
+Step 1 - Updating our Pi
+------------------------
+
+First, we need to log on to our Raspberry Pi. For this, I am using Putty which we set up in our previous video, but you could alternatively plug in a display and open up the terminal window to follow along.
+
+Before we install our packages we need to run:
+
+`sudo apt-get update`  
+`sudo apt-get upgrade`
+
+
+The first command will update the list of sites that are holding packages for the Pi. This means when we go to install our web server packages, the Pi will download the latest version from the correct source.  
+The second command will update all packages already on the Pi. This will make sure our Pi is fully updated before we start to install our Raspberry Pi Webserver.
+
+Step 2 - Installing Apache
+--------------------------
+
+Now that our Pi is up to date we can first install Apache. This is our web server of choice as it is free, open-source and has been the most popular browser on the internet since 1996.
+
+To install Apache, we will run the following command:
+
+`sudo apt-get install apache2 -y`
+
+The `-y` on the end of the command will automatically say yes to any setup instructions. This is okay as we only want the default Apache setup, but can be removed if you wish to set it up manually.
+
+Step 3 - Installing PHP
+-----------------------
+
+To get PHP files working on our Apache Raspberry Pi Webserver, we are going to need to install 2 packages. These are the default PHP package and also the PHP mod package for Apache which will allow Apache to interface to our PHP installation. To install both of these, we can run the following command:
+
+`sudo apt-get install php libapache2-mod-php -y`
+
+Once again the `-y` on the end is optional, however, it will speed up the time to install the package and stop the installation from waiting for manual input.
+
+Step 4 - Test the webserver
+---------------------------
+
+Now that Apache and PHP are installed, our web server is now all set up. In order to test this, we can type our Pi's IP Address into any web browser on our network. If the installation has worked, you should see the default apache page.
+
+If you don't see this page then try the steps again.
+
+Step 5 - Connect with SFTP
+--------------------------
+
+With the Web Server working, it is now time for us to transfer our website's files to the Pi. In order to do this, we are going to need to set up SFTP - Secure File Transfer Protocol. In order to transfer files to the Pi, we are going to need to install an SFTP Capable software. For this, I am going to use [WinSCP](https://winscp.net/eng/index.php) however there are other options out there.
+
+Since WinSCP uses the same port as SSH (Putty), there are no install instructions required if you followed [Part 1](/blog/installing-raspbian-and-enabling-ssh).
+
+Open up WinSCP and you'll be greeted with a login prompt. Follow the following steps to connect to your Pi:
+
+1.  Select “New Site” from the left-hand side panel
+2.  Change File Protocol to “SFTP”
+3.  Type in the IP Address of your Raspberry Pi into the Hostname Field
+4.  Check that the port number is set to 22
+5.  Enter in your Pi's username into the username field. If you haven't changed it then it will be “pi” all lowercase.
+6.  Click login and wait for it to prompt for your password. If you haven't changed it then it will be “raspberry” all lowercase
+
+Step 6 - Gaining permission for the webserver
+---------------------------------------------
+
+Once connected to the Pi with WinSCP, we will be able to view the files on our PC on the left and the files on our Pi to the right.
+
+*   On the right-hand side double click the “..” back button twice to get to the root directory on our Pi.
+*   Now double click the “var” folder
+*   Now navigate through “www” and then the “html” folder to find the index.html file
+
+Once you find the index.html file, you have found the root directory of the webserver. The index.html file is the default site page that we saw earlier.
+
+
+If you try deleting or adding files here at the moment, you won't be able to as you don't have the correct permissions to do so. To gain permissions on this folder, run the following commands:
+
+`cd /var/www`
+`sudo chown pi: html`
+
+Step 7 - Transferring Website Files to the Pi
+---------------------------------------------
+
+Now that we have our permissions setup, we can delete the index.html file on the Pi. We can then use the left-hand side of the WinSCP tool to find the website files on our PC which we wish to put on our Pi. Once they have been located, you can drag and drop them to the right-hand side.
+
+To test that the site has been transferred over then type in the IP Address of your Raspberry Pi into a web browser on your network and your browser will display the site you just copied over.
+
+That's all, the webserver is now setup!
