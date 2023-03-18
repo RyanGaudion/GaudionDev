@@ -3,7 +3,7 @@
 import {usePathname, useSearchParams} from 'next/navigation'
 import Script from 'next/script'
 import { useEffect } from "react";
-import * as gtag from "@/lib/gTag"
+import * as gtag from "@/lib/gtagHelper"
 
 interface GoogleAnalyticsProps{
     GA_MEASUREMENT_ID : string
@@ -18,7 +18,7 @@ export default function GoogleAnaytics({GA_MEASUREMENT_ID} : GoogleAnalyticsProp
 
     useEffect(() => {
         const handleRouteChange = (url: any) => {
-        gtag.pageview(GA_MEASUREMENT_ID, url);
+            gtag.pageview(GA_MEASUREMENT_ID, url);
         };
 
         const url = pathname + searchParams.toString()
@@ -37,6 +37,9 @@ export default function GoogleAnaytics({GA_MEASUREMENT_ID} : GoogleAnalyticsProp
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
+            gtag('consent', 'default', {
+                'analytics_storage': 'denied'
+              });
             gtag('config', '${GA_MEASUREMENT_ID}', {
                 page_path: window.location.pathname,
             });
@@ -44,7 +47,6 @@ export default function GoogleAnaytics({GA_MEASUREMENT_ID} : GoogleAnalyticsProp
             }}
         />
         </>
-       
         // -- End - Google Analytics --
     )
 }

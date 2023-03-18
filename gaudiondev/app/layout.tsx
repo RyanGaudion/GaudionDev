@@ -1,5 +1,6 @@
 import './globals.css'
 import GoogleAnaytics from '@/components/GoogleAnalytics';
+import CookieBanner from '@/components/CookieBanner';
 
 export const metadata = {
   title: 'Ryan Gaudion - Software Development Portfolio & Programming Blog',
@@ -15,7 +16,10 @@ export default function RootLayout({
     <html lang="en-GB">
       <GoogleAnaytics GA_MEASUREMENT_ID='G-9N7KFV3730'/>
 
-      <body className='bg-gray-900 text-white'>{children}</body>
+      <body className='bg-gray-900 text-white'>
+        {children}
+        <CookieBanner/>
+      </body>
     </html>
   )
 }
