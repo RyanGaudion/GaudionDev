@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.9",
+    "@types/gtag.js": "^0.0.12",
     "@types/mdx": "^2.0.3",
     "autoprefixer": "^10.4.14",
     "gray-matter": "^4.0.3",

@@ -27,7 +27,7 @@ export default function Blog({ params } :any) {
 
     return (
         <main className="wrapper">
-            <div className='prose prose-sm md:prose-base lg:prose-lg prose-gray !prose-invert '>
+            <div className='mdx'>
                 <h1>{blog.meta.title}</h1>
                 {/* @ts-expect-error Server Component*/}
                 <MDXRemote source={blog.content} components={{...GetAllMDXComponents()}} />
