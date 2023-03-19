@@ -1,52 +1,30 @@
-//import Image from 'next/image'
-//import { Inter } from 'next/font/google'
-//import styles from './page.module.css'
-
-//const inter = Inter({ subsets: ['latin'] })
-
-import fs from 'fs'
-import path from 'path'
-import matter from 'gray-matter'
-
-import Image from 'next/image'
-
-import Link from 'next/link'
+import BlogPreviewComponent from '@/components/BlogPreview';
+import { getAllBlogs } from '@/lib/blogHelper';
 
 export default function Home() {
 
   //Static by default
-  const blogDir = "blogs"
-
-  const files = fs.readdirSync(path.join(blogDir))
-  const blogs = files.map(filename => {
-    const markdownWithMeta = fs.readFileSync(path.join(blogDir, filename), 'utf-8')
-    const { data: frontMatter } = matter(markdownWithMeta)
-    return {
-      meta: frontMatter,
-      slug: filename.split('.')[0]
-    }
-  })
+  const blogs = getAllBlogs();
 
   return (
-    <main className="max-w-3xl flex flex-col mx-auto py-20">
-      <h1 className="text-3xl font-bold">
+    <main className="wrapper">
+      <h1 className="text-4xl font-bold">
         Ryan Gaudion
       </h1>
 
 
       <section className='py-10'>
-        <h2 className='text-2xl font-bold'>
+        <h2 className='text-3xl font-bold'>
           Latest Blogs
         </h2>
 
-        <div className='py-2'>
+        <div className='py-4 flex flex-col gap-4'>
           {blogs.map((blog, index) => (
-            <Link href={'/blog/' + blog.slug} passHref key={index}>
-              <h5 className="card-title">{blog.meta.title}</h5>
-              <p className="card-text">{blog.meta.description}</p>
-            </Link>
+            blog && <BlogPreviewComponent key={index} blog={blog}/>
           ))}
         </div>
+          
+        
       </section>
 
       

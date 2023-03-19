@@ -1,45 +1,36 @@
-import fs from 'fs'
-import path from 'path'
-import matter from 'gray-matter'
-
-import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote } from 'next-mdx-remote/rsc'
+import { getAllBlogsInfo, getBlog } from '@/lib/blogHelper'
+import { GetAllMDXComponents } from "@/lib/mdxHelper";
+import { notFound } from 'next/navigation';
 
-import Button from '@/mdxComponents/Button'
 
 export async function generateStaticParams() {
-    const files = fs.readdirSync(path.join('blogs'))
-
-    const paths = files.map(filename => ({
-        slug: filename.replace('.mdx', '')
-    }))
-
-
-    return paths
+    return getAllBlogsInfo()
 }
 
-function getPost({slug}:any){
-    const markdownWithMeta = fs.readFileSync(path.join('blogs',slug + '.mdx'), 'utf-8')
+export async function generateMetadata({ params, searchParams } : any) {
+    const blog = getBlog(params.slug);
 
-    const { data: frontMatter, content } = matter(markdownWithMeta)
-
-    return {
-        frontMatter,
-        slug,
-        content
+    return{
+        title: blog?.meta?.title + " - Ryan Gaudion's Blog",
+        description: blog?.meta?.description + " - Ryan Gaudion's Blog",
     }
 }
-  
+
 //Fix Any
-export default function Post({ params } :any) {
-    const props = getPost(params);
+export default function Blog({ params } :any) {
+    const blog = getBlog(params.slug);
+
+    if(!blog){
+        return notFound;
+    }
 
     return (
-        <main className="max-w-3xl flex flex-col mx-auto py-20">
-            <div className='prose prose-sm md:prose-base lg:prose-lg prose-slate dark:prose-invert '>
-                
+        <main className="wrapper">
+            <div className='mdx'>
+                <h1>{blog.meta.title}</h1>
                 {/* @ts-expect-error Server Component*/}
-                <MDXRemote source={props.content} components={{Button}} />
+                <MDXRemote source={blog.content} components={{...GetAllMDXComponents()}} />
             </div>
         </main>
     )

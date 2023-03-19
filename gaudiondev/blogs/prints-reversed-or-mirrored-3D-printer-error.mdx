@@ -1,0 +1,83 @@
+---
+title:  Prints Reversed And/Or Mirrored - 3D Printer Error
+date: '21 May 2020 12:00'
+description: Having issues 3D printing where your 3D prints are mirrored or just don't look the same as they did in the source file. Are your prints the wrong way round, either things that should be on the left are on the right or things on the top are on the bottom? By following this I will show you how to fix these issues.
+#tags: ['functions', 'javascript']
+---
+
+> This Blog post was written for everybitelectronics.co.uk which went live in 2019 and expired in 2023.
+
+Having issues 3D printing where your 3D prints are mirrored or just don't look the same as they did in the source file. Are your prints the wrong way round, either things that should be on the left are on the right or things on the top are on the bottom? By following this I will show you how to fix these issues.  
+  
+There are 3 main ways to fix this issue. My first thought to fix the issue was to change a setting in my slicing software, however, this is not the best solution. Not only will the parts be printed wrong if using another slicer but the printer itself will never be correct. See below the 3 different ways to solve the issue.
+
+The first step to finding out which axis is the wrong way round. To do this, print an object with distinct areas on each side. For me, I was printing this [15W Amplifier Enclosure.](https://www.thingiverse.com/thing:2905051) Once printed we can compare the model to the one in our slicing software to see which axis has been printed the wrong way.
+
+Solution 1 - Rotate Motor Cables
+--------------------------------
+
+The first way to fix the issue is to rotate the [motor cables](https://amzn.to/2CxtkLu) for the axis that is not working. By doing this, we switch the way that the motor spins and hence make the motor move in the opposite axis.
+
+The reason this is the best solution is that it fixes the issue at the lowest level. No matter what slicer we use or what GCode we use, the printer will always just work.
+
+The reason this isn't the solution for everyone is that some printer motor cables have clips on them that only allow them to be plugged in 1 way. If you feel confident you could cut the wire, switch the connector around, re-solder and then re-plug it in, however, I don't recommend this if you don't know what you're doing.
+
+If you can't switch the cable around then move on to solution 2.
+
+Solution 2 - Switch X and Y-axis
+--------------------------------
+
+Solution 2 is the solution that fixed the problem for me. The issue was that I had plugged my x-axis motor and limit switch into the y-axis on the motherboard. Simply by switching these axes, I fixed the issue of the prints being mirrored.
+
+This solution should work for the majority of you, however, if you are still having issues after doing this or for some reason you just can't switch the axes then move onto solution 3.
+
+Solution 3 - Changing Firmware
+------------------------------
+
+Solution number 3 is changing the firmware - this solution is also a great solution as it fixes the issue at a low level, however not all users can do this as not all 3D printer's firmware is open source.
+
+For the following steps to work, you must have the Marlin source code for your specific 3D printer available. You must also have the [Arduino IDE](https://www.arduino.cc/en/main/software) installed. Open up the Firmware's Arduino file (.ino).
+
+When the solution opens up, you will see many different files open. You need to navigate to the Configuration.h file. Within this file scroll down to the following lines of code:
+
+```
+// Invert the stepper direction. 
+// Change (or reverse the motor connector) if an axis goes the wrong way.
+define INVERT\_X\_DIR true
+define INVERT\_Y\_DIR true
+define INVERT\_Z\_DIR true
+```
+
+This is where you need to switch the values around. If they are currently true, change them to false and if they are false, change them to true. Due to the fact I was having issues with my x-Axis, I have changed the above to the following:
+
+```
+// Invert the stepper direction. 
+// Change (or reverse the motor connector) if an axis goes the wrong way.
+define INVERT\_X\_DIR false
+define INVERT\_Y\_DIR true
+define INVERT\_Z\_DIR true
+```
+
+With the changes made you can simply verify the sketch and upload to your 3D printer. If you are unsure how to do this, check out [this guide](https://www.matterhackers.com/news/how-to-successfully-flash-your-3d-printers-firmware) from the “Compiling and Uploading” section.
+
+One thing to note, if you have issues with your limit switches being the wrong way round you may need to change the settings below.
+
+```
+// Direction of endstops when homing; 1=MAX, -1=MIN
+// :\[-1,1\]
+define X\_HOME\_DIR -1
+define Y\_HOME\_DIR -1
+define Z\_HOME\_DIR -1
+```
+
+For each axis, you changed above, change a -1 to a 1 and a 1 to a -1. For me, I am only changing the x-axis, so my changes look like this:
+
+```
+// Direction of endstops when homing; 1=MAX, -1=MIN
+// :\[-1,1\]
+define X\_HOME\_DIR 1
+define Y\_HOME\_DIR -1
+define Z\_HOME\_DIR -1
+```
+
+I hope 1 of these solutions helped.

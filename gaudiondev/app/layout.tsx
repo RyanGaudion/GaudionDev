@@ -1,8 +1,10 @@
 import './globals.css'
+import GoogleAnaytics from '@/components/GoogleAnalytics';
+import CookieBanner from '@/components/CookieBanner';
 
 export const metadata = {
-  title: 'Gaudion.Dev',
-  description: 'Ryan Gaudion\'s Personal Portfolio Site',
+  title: 'Ryan Gaudion - Software Development Portfolio & Programming Blog',
+  description: 'Personal Portfolio Site with blogs about software development. Written in Next JS by Ryan Gaudion.',
 }
 
 export default function RootLayout({
@@ -12,7 +14,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en-GB">
-      <body className='bg-gray-900 text-white'>{children}</body>
+      <GoogleAnaytics GA_MEASUREMENT_ID='G-9N7KFV3730'/>
+
+      <body className='bg-gray-900 text-white'>
+        {children}
+        <CookieBanner/>
+      </body>
     </html>
   )
 }
