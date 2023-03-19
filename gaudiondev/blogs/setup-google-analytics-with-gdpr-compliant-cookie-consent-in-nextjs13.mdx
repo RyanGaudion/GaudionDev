@@ -1,0 +1,236 @@
+---
+title: How to setup Google Analytics with GDPR compliant cookie consent in NextJS 13
+date: '20 Mar 2023 12:00'
+description: abc
+#tags: ['functions', 'javascript']
+---
+
+TODO: Intro
+
+Packages
+----------------
+
+!! Install client-only for components
+!! Install npm install @types/gtag.js --save-dev
+
+Setup Google Analytics
+----------------------
+
+`TODO - New Web Stream screenshot`
+
+
+Add Google Analytics to NextJS 13
+---------------------------------
+
+`Google Analytics Component Body`
+
+``` ts 
+// components/GoogleAnalytics.tsx
+'use client';
+
+import Script from 'next/script'
+
+interface GoogleAnalyticsProps{
+    GA_MEASUREMENT_ID : string
+}
+
+export default function GoogleAnaytics({GA_MEASUREMENT_ID} : GoogleAnalyticsProps){
+    return (
+        <>
+            <Script strategy="afterInteractive" 
+                src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}/>
+            <Script id='google-analytics' strategy="afterInteractive"
+                dangerouslySetInnerHTML={{
+                __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('consent', 'default', {
+                    'analytics_storage': 'denied'
+                });
+                gtag('config', '${GA_MEASUREMENT_ID}', {
+                    page_path: window.location.pathname,
+                });
+                `,
+                }}
+            />
+        </>
+)}
+
+```
+
+Add to RootLayout.tsx:
+
+```tsx
+// app/layout.tsx
+
+<html lang="en">
+    <GoogleAnaytics GA_MEASUREMENT_ID='G-9N7KFV3730'/>
+    <body>{children}</body>
+</html>
+```
+
+Google Analytics for SPA (Single Page Applications)
+---------------------------------------------------
+
+```ts
+// lib/gtagHelper.ts
+
+export const pageview = (GA_MEASUREMENT_ID : string, url : string) => {
+    window.gtag("config", GA_MEASUREMENT_ID, {
+        page_path: url,
+    });
+};
+```
+
+```ts
+// components/GoogleAnalytics.tsx
+
+import {usePathname, useSearchParams} from 'next/navigation'
+import { useEffect } from "react";
+import {pageview} from "@/lib/gtagHelper"
+```
+
+
+```ts
+// components/GoogleAnalytics.tsx
+
+export default function GoogleAnaytics({GA_MEASUREMENT_ID} : GoogleAnalyticsProps){
+    const pathname = usePathname()
+    const searchParams = useSearchParams()
+
+    useEffect(() => {
+        const handleRouteChange = (url: any) => {
+            pageview(GA_MEASUREMENT_ID, url);
+        };
+
+        const url = pathname + searchParams.toString()
+    
+        handleRouteChange(url)
+    }, [pathname, searchParams, GA_MEASUREMENT_ID]);
+```
+
+
+
+`Google Analytics Component useEffect`
+
+Cookie Banner React Component
+-----------------------
+
+`Cookie Banner Component with onclicks, or dynamic class`
+
+```ts
+// components/cookiebanner.tsx
+
+'use client';
+
+import Link from 'next/link'
+
+export default function CookieBanner(){
+    return (
+        <div className={`my-10 mx-auto max-w-max md:max-w-screen-sm
+                        fixed bottom-0 left-0 right-0 
+                        flex px-3 md:px-4 py-3 justify-between items-center flex-col sm:flex-row gap-4  
+                         bg-gray-700 rounded-lg shadow`}>
+
+            <div className='text-center'>
+                <Link href="/info/cookies"><p>We use <span className='font-bold text-sky-400'>cookies</span> on our site.</p></Link>
+            </div>
+
+            
+            <div className='flex gap-2'>
+                <button className='px-5 py-2 text-gray-300 rounded-md border-gray-900'}>Decline</button>
+                <button className='bg-gray-900 px-5 py-2 text-white rounded-lg'}>Allow Cookies</button>
+            </div>   
+        </div>
+    )}
+
+```
+
+
+
+Google Analytics Persistent Consent using The Google Tag (gtag.js)
+------------------------
+
+```ts
+// lib/storageHelper.ts
+
+import "client-only";
+
+export function getLocalStorage(key: string, defaultValue:any){
+    const stickyValue = localStorage.getItem(key);
+
+    return (stickyValue !== null && stickyValue !== 'undefined')
+        ? JSON.parse(stickyValue)
+        : defaultValue;
+}
+
+export function setLocalStorage(key: string, value:any){
+    localStorage.setItem(key, JSON.stringify(value));
+}
+```
+
+```tsx
+// components/cookiebanner.tsx
+import { getLocalStorage, setLocalStorage } from '@/lib/storageHelper';
+import { useState, useEffect } from 'react';
+```
+
+```tsx
+// components/cookiebanner.tsx
+export default function CookieBanner(){
+
+    const [cookieConsent, setCookieConsent] = useState(false);
+
+    useEffect (() => {
+        const storedCookieConsent = getLocalStorage("cookie_consent", null)
+
+        setCookieConsent(storedCookieConsent)
+    }, [setCookieConsent])
+
+    
+    useEffect(() => {
+        const newValue = cookieConsent ? 'granted' : 'denied'
+
+        window.gtag("consent", 'update', {
+            'analytics_storage': newValue
+        });
+
+        setLocalStorage("cookie_consent", cookieConsent)
+
+        console.log("Cookie Consent: ", cookieConsent)
+
+    }, [cookieConsent]);
+```
+
+
+```tsx
+// components/cookiebanner.tsx
+<button className='...' onClick={() => setCookieConsent(false)}>Decline</button>
+<button className='...' onClick={() => setCookieConsent(true)}>Allow Cookies</button>
+```
+
+`Test using network tab`
+
+
+
+Hide Cookie Banner if consented
+----------------------------------
+
+
+!! replace `flex` with:
+
+```tsx
+// components/cookiebanner.tsx
+<div className={`... 
+    ${cookieConsent != null ? "hidden" : "flex"} 
+    ...}>
+
+```
+
+`dynamic class`
+
+Exclude Local IP from Google Analytics
+----------------------------------
+
+`screenshot`
