@@ -1,7 +1,7 @@
-import { MDXRemote } from 'next-mdx-remote/rsc'
+
 import { getAllBlogsInfo, getBlog } from '@/lib/blogHelper'
-import { GetAllMDXComponents, GetMdxOptions } from "@/lib/mdxHelper";
 import { notFound } from 'next/navigation';
+import BlogComponent from '@/components/Blog';
 
 
 export async function generateStaticParams() {
@@ -28,9 +28,7 @@ export default function Blog({ params } :any) {
     return (
         <main className="wrapper">
             <div className='mdx'>
-                <h1>{blog.meta.title}</h1>
-                {/* @ts-expect-error Server Component*/}
-                <MDXRemote source={blog.content} components={{...GetAllMDXComponents()}} options={{...GetMdxOptions()}} />
+                <BlogComponent blog={blog} />
             </div>
         </main>
     )

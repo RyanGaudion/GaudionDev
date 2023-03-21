@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@code-hike/mdx": "^0.8.0",
     "@next/mdx": "^13.2.4",
     "@tailwindcss/line-clamp": "^0.4.2",
     "@types/node": "18.15.3",
