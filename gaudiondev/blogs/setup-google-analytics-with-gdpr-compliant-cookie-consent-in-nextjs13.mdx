@@ -26,19 +26,19 @@ This adds the type definitions for Google's gtag.js script which is required onl
 Setup Google Analytics
 ----------------------
 
-First step is to setup Google Analytics. To follow along with this post, you'll need the **Measaurement ID** of a Web Data Stream.
+First step is to setup Google Analytics. To follow along with this post, you'll need the **Measurement ID** of a Web Data Stream.
 
 ![New Google Analytics Web Stream](/img/blog/google-analytics/google-analytics-new-web-stream.png "New Google Analytics Web Stream")
 Add Google Analytics to NextJS 13
 ---------------------------------
 
-We're first going to build a Google Analytics component which will store the basic gtag.js code which iteracts with Google Analytics.
+We're first going to build a Google Analytics component which will store the basic gtag.js code which interacts with Google Analytics.
 
 At the top of this file, we use `use client` in order to ensure it will only be run locally rather than server side.
 
 We then copy the 2 recommended scripts from google into the body of the component - making sure to create the property `GA_MEASUREMENT_ID`.
 
-Within the second script we can see the newly added "consent" section that will default the `analytics_storage` cookeis to denied. This is using [Google Analytics Consent Mode](https://support.google.com/analytics/answer/9976101) and we can then override this consent once the user accepts cookies.
+Within the second script we can see the newly added "consent" section that will default the `analytics_storage` cookies to denied. This is using [Google Analytics Consent Mode](https://support.google.com/analytics/answer/9976101) and we can then override this consent once the user accepts cookies.
 
 ``` ts 
 // components/GoogleAnalytics.tsx
@@ -143,7 +143,10 @@ Cookie Banner React Component
 Now we have google analytics working for NextJS 13, including when we change pages. However, this is currently not GDPR compliant as it will use cookie tracking by default. We need to use [Google Analytics Consent Mode](https://support.google.com/analytics/answer/9976101) in order to allow users to opt-in to cookie tracking.
 
 
-To start will, we'll add a new component called Cookie Banner which will allow our users to opt-in or opt-out of cookies.
+![Cookie Banner Component TailwindCSS](/img/blog/google-analytics/cookie-banner-component.png "Cookie Banner Component using TailwindCSS")
+
+To start will, we'll add a new mobile responsive component called Cookie Banner which will allow our users to opt-in or opt-out of cookies. Copy the code below into a component called `cookiebanner.tsx`. 
+
 
 ```ts
 // components/cookiebanner.tsx
@@ -223,7 +226,7 @@ The first `useEffect` block is responsible for grabbing the user's preferences. 
 
 In this second block we check the value of `cookieConsent`. If it's true, we update gtag's consent to "granted" else we default to "denied". 
 
-Within the second block, we also save the preferences back to localstorage so that we don't have to ask the user everytime.
+Within the second block, we also save the preferences back to localstorage so that we don't have to ask the user every time.
 
 ```tsx
 // components/cookiebanner.tsx
