@@ -1,4 +1,6 @@
 import addMdx from '@next/mdx';
+import nextMdx from "@next/mdx";
+
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -9,15 +11,20 @@ const nextConfig = {
   },
 }
 
-
-addMdx(nextConfig, {
+const mdxOptions = {
+  extension: /\.mdx?$/,
   options: {
     remarkPlugins: [],
     rehypePlugins: [],
-    // If you use `MDXProvider`, uncomment the following line.
-    // providerImportSource: "@mdx-js/react",
   }
-})
+  // If you use `MDXProvider`, uncomment the following line.
+  // providerImportSource: "@mdx-js/react",
+}
+
+addMdx(nextConfig, mdxOptions)
+
+const withMDX = nextMdx(mdxOptions);
 
 
-export default nextConfig;
+
+export default withMDX(nextConfig);

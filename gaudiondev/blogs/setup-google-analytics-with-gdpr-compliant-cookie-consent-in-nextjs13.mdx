@@ -79,11 +79,12 @@ We then need to import & add this new Google Analytics component to our root lay
 import GoogleAnalytics from '@/components/GoogleAnalytics';
 ```
 
+When adding to our root layout, make sure to replace `GA_MEASUREMENT_ID` with your own **Measurement ID** from Google Analytics.
 
 ```tsx
 // app/layout.tsx
 <html lang="en">
-    <GoogleAnalytics GA_MEASUREMENT_ID='G-9N7KFV3730'/>
+    <GoogleAnalytics GA_MEASUREMENT_ID='G-0000000000'/>
     <body>{children}</body>
 </html>
 ```
@@ -125,14 +126,14 @@ We can then add the following code to the component to listen to changes of both
 ```ts
 // components/GoogleAnalytics.tsx
 
-export default function GoogleAnalytics({GA_MEASUREMENT_ID} : GoogleAnalyticsProps){
+export default function GoogleAnalytics({GA_MEASUREMENT_ID} : {GA_MEASUREMENT_ID : string}){
     const pathname = usePathname()
     const searchParams = useSearchParams()
 
     useEffect(() => {
         const url = pathname + searchParams.toString()
     
-        gtag.pageview(GA_MEASUREMENT_ID, url);
+        pageview(GA_MEASUREMENT_ID, url);
         
     }, [pathname, searchParams, GA_MEASUREMENT_ID]);
 ```
@@ -176,7 +177,25 @@ export default function CookieBanner(){
 
 ```
 
-With our component built, we can now add functionality to it to opt-in or out of cookies.
+With our component built, we can now import it and add it to our root layout so it appears on every page:
+
+```tsx
+// app/layout.tsx
+import CookieBanner from '@/components/CookieBanner';
+```
+
+```tsx
+// app/layout.tsx
+<html lang="en">
+    <GoogleAnaytics GA_MEASUREMENT_ID='G-0000000000'/>
+    <body>
+        {children}
+        <CookieBanner/>
+    </body>
+</html>
+```
+
+We can now add the functionality to it to opt-in or out of cookies.
 
 
 Google Analytics Persistent Consent using The Google Tag (gtag.js)
@@ -293,4 +312,13 @@ The final thing to do is to hide the cookie banner once the user accepts cookies
     ...}>
 ```
 
-And that's it - you now have a cookie banner setup that prompts for Cookie Consent, using Google Analytics. If you found this tutorial helpful, feel free to share it and if you have any questions, feel free to [Get In Touch](https://twitter.com/Ryan_Gaudion)
+Conclusion
+-------------------
+
+And that's it - you now have a cookie banner setup that prompts for Cookie Consent, using Google Analytics. 
+
+There are still many areas of improvement, including:
+- Allowing users to change their consent option
+- Re-Asking for permission every 6 months
+
+If you found this tutorial helpful, feel free to share it and if you have any questions, feel free to [Get In Touch](https://twitter.com/Ryan_Gaudion)
