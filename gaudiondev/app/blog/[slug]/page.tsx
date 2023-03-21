@@ -1,6 +1,6 @@
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { getAllBlogsInfo, getBlog } from '@/lib/blogHelper'
-import { GetAllMDXComponents } from "@/lib/mdxHelper";
+import { GetAllMDXComponents, GetMdxOptions } from "@/lib/mdxHelper";
 import { notFound } from 'next/navigation';
 
 
@@ -30,7 +30,7 @@ export default function Blog({ params } :any) {
             <div className='mdx'>
                 <h1>{blog.meta.title}</h1>
                 {/* @ts-expect-error Server Component*/}
-                <MDXRemote source={blog.content} components={{...GetAllMDXComponents()}} />
+                <MDXRemote source={blog.content} components={{...GetAllMDXComponents()}} options={{...GetMdxOptions()}} />
             </div>
         </main>
     )

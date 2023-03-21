@@ -5,3 +5,12 @@ import Button from "../components/mdx/YouTube"
 export function GetAllMDXComponents(){
     return {Button, YouTube, a: CustomLink}
 }
+
+export function GetMdxOptions(){
+    return {
+        mdxOptions: {
+          remarkPlugins: [],
+          rehypePlugins: [],
+        }
+    }
+}
