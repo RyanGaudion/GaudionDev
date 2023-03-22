@@ -18,29 +18,39 @@ Before we can connect to our Pi we need to install the correct software onto it.
   
 The first command we need to run will update our list of available packages to make sure we are installing the most up to date version of VNC:
 
-`sudo apt-get update`
+```bash
+sudo apt-get update
+```
 
 The next command we need to do will update all the software installed on our Pi. This will make sure our system is up to date before we install anything new:
 
-`sudo apt-get upgrade`
+```bash
+sudo apt-get upgrade
+```
 
 Optionally we can also remove any packages/software that isn't required anymore. To do this we can run the following command:
 
-`sudo apt autoremove`
+```bash
+sudo apt autoremove
+```
 
 Step 2 - Install the VNC server on our Pi (0:57)
 ------------------------------------------------
 
 With our Pi now up to date, we can install VNC server onto our Pi. We will do this with the following command:
 
-`sudo apt-get install realvnc-vnc-server`
+```bash
+sudo apt-get install realvnc-vnc-server
+```
 
 Step 3 - Enable VNC on our Pi (1:18)
 ------------------------------------
 
 To enable VNC on our Pi we will use the `Raspi-Config` tool. To run this tool we will use the following command:
 
-`sudo raspi-config`
+```bash
+sudo raspi-config
+```
 
 This command will load up the config user interface. Use your arrow keys to navigate this menu.  
   
@@ -53,7 +63,9 @@ Step 4 - Restart your Pi (1:45)
 
 For these changes to take place, we need to restart our Raspberry Pi. In order to do this we can run the following command:
 
-`sudo reboot`
+```bash
+sudo reboot
+```
 
 Step 5 - Installing VNC Viewer (1:59)
 -------------------------------------
@@ -82,7 +94,9 @@ Step 7 - Change the resolution of the desktop (3:27)
 
 Initially, the resolution of the desktop isn't great. It's usually quite small making all the icons and buttons very large. To overcome this, we can change the size of the desktop. To do this we need a terminal on the Pi, we can either do this with Putty (SSH) or with the desktop through VNC. We need to run the following command once we have a terminal open:
 
-`sudo raspi-config`
+```bash
+sudo raspi-config
+```
 
 Use your arrow keys to navigate to advanced options. From this sub-menu navigate to resolution. Here we can pick the resolution that we desire. Here I recommend using any of the following modes:
 
@@ -96,7 +110,9 @@ For these options to take work correctly we need to make sure the GPU has enough
 
 Finally, reboot the Raspberry Pi for these resolution changes to take place:
 
-`sudo reboot`
+```bash
+sudo reboot
+```
 
 Step 8 - Accessing the Pi from anywhere in the world (5:10)
 -----------------------------------------------------------

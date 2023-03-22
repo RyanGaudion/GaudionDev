@@ -40,7 +40,7 @@ For the following steps to work, you must have the Marlin source code for your s
 
 When the solution opens up, you will see many different files open. You need to navigate to the Configuration.h file. Within this file scroll down to the following lines of code:
 
-```
+```arduino
 // Invert the stepper direction. 
 // Change (or reverse the motor connector) if an axis goes the wrong way.
 define INVERT\_X\_DIR true
@@ -50,7 +50,7 @@ define INVERT\_Z\_DIR true
 
 This is where you need to switch the values around. If they are currently true, change them to false and if they are false, change them to true. Due to the fact I was having issues with my x-Axis, I have changed the above to the following:
 
-```
+```arduino
 // Invert the stepper direction. 
 // Change (or reverse the motor connector) if an axis goes the wrong way.
 define INVERT\_X\_DIR false
@@ -62,7 +62,7 @@ With the changes made you can simply verify the sketch and upload to your 3D pri
 
 One thing to note, if you have issues with your limit switches being the wrong way round you may need to change the settings below.
 
-```
+```arduino
 // Direction of endstops when homing; 1=MAX, -1=MIN
 // :\[-1,1\]
 define X\_HOME\_DIR -1
@@ -72,7 +72,7 @@ define Z\_HOME\_DIR -1
 
 For each axis, you changed above, change a -1 to a 1 and a 1 to a -1. For me, I am only changing the x-axis, so my changes look like this:
 
-```
+```arduino
 // Direction of endstops when homing; 1=MAX, -1=MIN
 // :\[-1,1\]
 define X\_HOME\_DIR 1

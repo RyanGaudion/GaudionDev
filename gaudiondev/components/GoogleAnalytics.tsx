@@ -5,25 +5,17 @@ import Script from 'next/script'
 import { useEffect } from "react";
 import * as gtag from "@/lib/gtagHelper"
 
-interface GoogleAnalyticsProps{
-    GA_MEASUREMENT_ID : string
-}
-
-
-export default function GoogleAnaytics({GA_MEASUREMENT_ID} : GoogleAnalyticsProps){
+export default function GoogleAnalytics({GA_MEASUREMENT_ID} : {GA_MEASUREMENT_ID : string}){
     {/* Google Analytics*/}
 
     const pathname = usePathname()
     const searchParams = useSearchParams()
 
     useEffect(() => {
-        const handleRouteChange = (url: any) => {
-            gtag.pageview(GA_MEASUREMENT_ID, url);
-        };
-
         const url = pathname + searchParams.toString()
     
-        handleRouteChange(url)
+        gtag.pageview(GA_MEASUREMENT_ID, url);
+
     }, [pathname, searchParams, GA_MEASUREMENT_ID]);
     {/* -- End - Google Analytics -- */}
 
