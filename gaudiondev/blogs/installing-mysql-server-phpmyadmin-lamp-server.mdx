@@ -14,11 +14,15 @@ Step 1 - Install MySQL on your Raspberry Pi (0:55)
 
 The first part of the installation process is to install MySQL. To do this we will run the following command:
 
-`sudo apt-get install mysql-server`
+```shell
+sudo apt-get install mysql-server
+```
 
 This command will download all the dependencies for the MySQL installation. Once done, we need to set up MySQL; fortunately, there is a built-in script to do this. We can run the following command to walk us through the setup process:
 
-`sudo mysql\_secure\_installation`
+```shell
+sudo mysql\_secure\_installation
+```
 
 This setup script will prompt for the following:
 
@@ -36,11 +40,15 @@ Step 2 - Set up a MySQL user for PHP to use (1:51)
 
 When we setup PHPMyAdmin, it will ask for a MySQL user to run as. By default, PHPMyAdmin will not allow us to choose the root user as this can open us up to security threats. Therefore we are required to create a new MySQL user. To set up this new account we need to enter into the MySQL command line. To do this we run the following command:
 
-`sudo mysql -u root -p`
+```shell
+sudo mysql -u root -p
+```
 
 It will prompt for your Pi's password, enter it and then you'll be in the MySQL command line. With this open, we can now create our new account with the following command. Making sure to change `user` for a username of choice and “password” with the password you wish to use:
 
-`GRANT ALL PRIVILEGES ON mydb.\* TO 'user'@'localhost' IDENTIFIED BY 'password';`
+```sql
+GRANT ALL PRIVILEGES ON mydb.\* TO 'user'@'localhost' IDENTIFIED BY 'password';
+```
 
 With this command run, our new SQL user is setup - we can now type `quit` to exit the MySQL console.
 
@@ -49,7 +57,9 @@ Step 3 - Install PHPMyAdmin (2:36)
 
 With MySQL all setup, we can now install our MySQL administration tool - PHPMyAdmin which can be installed with the following command:
 
-`sudo apt-get install phpmyadmin`
+```shell
+sudo apt-get install phpmyadmin
+```
 
 Running this command will automatically start the setup process which will ask a few questions:
 
@@ -65,17 +75,23 @@ Step 4 - Change Apache Configs (3:57)
 
 For PHPMyAdmin to work correctly with Apache, we need to change the Apache config files. The command we will run to do this is:
 
-`sudo nano /etc/apache2/apache2.conf`
+```shell
+sudo nano /etc/apache2/apache2.conf
+```
 
 This will open up a nano terminal of our config file. We need to use our arrow keys to scroll to the bottom of the file and then add the following line:
 
-`Include /etc/phpmyadmin/apache.conf`
+```
+Include /etc/phpmyadmin/apache.conf
+```
 
 With this line added, we can save and exit nano by clicking `CTRL + X`, type `y` to save and then click `enter`.
 
 For these changes to take place we now need to restart the Apache server with the following command:
 
-`sudo /etc/init.d/apache2 restart`
+```shell
+sudo /etc/init.d/apache2 restart
+```
 
 Step 5 - Check PHPMyAdmin is working (4:54)
 -------------------------------------------

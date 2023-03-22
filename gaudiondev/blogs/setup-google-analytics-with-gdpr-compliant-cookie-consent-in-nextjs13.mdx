@@ -14,11 +14,15 @@ Packages
 
 To get started, we need to install the following packages:
 
-`npm install client-only`
+```shell
+npm install client-only
+```
 
 This new NextJS 13 feature, allows us to define certain files to only be run on the client. We'll use this when accessing local storage in the browser to store cookie consent.
 
-`npm install @types/gtag.js --save-dev`
+```shell
+npm install @types/gtag.js --save-dev
+```
 
 This adds the type definitions for Google's gtag.js script which is required only if you're using TypeScript.
 

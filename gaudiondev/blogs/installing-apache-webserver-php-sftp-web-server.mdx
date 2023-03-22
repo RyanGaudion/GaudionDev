@@ -20,8 +20,10 @@ First, we need to log on to our Raspberry Pi. For this, I am using Putty which w
 
 Before we install our packages we need to run:
 
-`sudo apt-get update`  
-`sudo apt-get upgrade`
+```shell
+sudo apt-get update
+sudo apt-get upgrade
+```
 
 
 The first command will update the list of sites that are holding packages for the Pi. This means when we go to install our web server packages, the Pi will download the latest version from the correct source.  
@@ -34,7 +36,9 @@ Now that our Pi is up to date we can first install Apache. This is our web serve
 
 To install Apache, we will run the following command:
 
-`sudo apt-get install apache2 -y`
+```shell
+sudo apt-get install apache2 -y
+```
 
 The `-y` on the end of the command will automatically say yes to any setup instructions. This is okay as we only want the default Apache setup, but can be removed if you wish to set it up manually.
 
@@ -43,7 +47,9 @@ Step 3 - Installing PHP
 
 To get PHP files working on our Apache Raspberry Pi Webserver, we are going to need to install 2 packages. These are the default PHP package and also the PHP mod package for Apache which will allow Apache to interface to our PHP installation. To install both of these, we can run the following command:
 
-`sudo apt-get install php libapache2-mod-php -y`
+```shell
+sudo apt-get install php libapache2-mod-php -y
+```
 
 Once again the `-y` on the end is optional, however, it will speed up the time to install the package and stop the installation from waiting for manual input.
 
@@ -84,8 +90,10 @@ Once you find the index.html file, you have found the root directory of the webs
 
 If you try deleting or adding files here at the moment, you won't be able to as you don't have the correct permissions to do so. To gain permissions on this folder, run the following commands:
 
-`cd /var/www`
-`sudo chown pi: html`
+```shell
+cd /var/www
+sudo chown pi: html
+```
 
 Step 7 - Transferring Website Files to the Pi
 ---------------------------------------------
