@@ -1,5 +1,3 @@
-//'use client';
-
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { GetAllMDXComponents, GetMdxOptions } from "@/lib/mdxHelper";
 
