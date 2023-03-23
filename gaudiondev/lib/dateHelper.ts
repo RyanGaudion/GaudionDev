@@ -1,10 +1,10 @@
-export function timeSince(date? : Date) : string {
+export function timeSince(date? : Date | number) : string {
 
     if(date == null){
         return "";
     }
 
-    var seconds = Math.floor((new Date().getTime() - date.getTime()) / 1000);
+    var seconds = Math.floor((new Date().getTime() - new Date(date).getTime()) / 1000);
   
     if(isNaN(seconds)){
       return "unknown"
@@ -34,10 +34,10 @@ export function timeSince(date? : Date) : string {
     return Math.floor(seconds) + " seconds ago";
   }
 
-export function dateTimeString(date? : Date ) : string{
+export function dateTimeString(date? : Date | number) : string{
     if (date == null) {return ""}
 
     const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
 
-    return date.toLocaleString(undefined, options)
+    return new Date(date).toLocaleString(undefined, options)
 }

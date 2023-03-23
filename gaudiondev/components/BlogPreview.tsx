@@ -2,6 +2,7 @@ import { Blog } from "@/lib/blogHelper";
 import { dateTimeString, timeSince } from "@/lib/dateHelper";
 
 import Link from 'next/link'
+import BlogPreviewDate from "./BlogPreviewDate";
 
 
 interface BlogPreviewComponentParams{
@@ -19,7 +20,7 @@ export default function BlogPreviewComponent(params: BlogPreviewComponentParams)
                     <p className="text-base text-gray-200 line-clamp-2 md:text-gray-400">{blog.meta.description || "No Description"}</p>
                 </div>
                 <div className="text-sm md:text-base my-auto text-gray-400 whitespace-nowrap">
-                    <p title={dateTimeString(blog.meta.date)}>{timeSince(blog.meta.date)}</p>
+                    <BlogPreviewDate dateNum={blog?.meta?.date?.getTime()} />
                 </div>
             </div>
         </Link>
