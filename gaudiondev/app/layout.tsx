@@ -4,7 +4,7 @@ import CookieBanner from '@/components/CookieBanner';
 
 export const metadata = {
   title: 'Ryan Gaudion - Software Development Portfolio & Programming Blog',
-  description: 'Personal Portfolio Site with blogs about software development. Written in Next JS by Ryan Gaudion.',
+  description: 'Hi, I\'m Ryan Gaudion a UK based Software Developer. Here is my personal portfolio site and blog written in Next.JS.',
 }
 
 export default function RootLayout({
