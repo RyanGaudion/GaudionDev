@@ -1,6 +1,6 @@
 ---
 title: How to setup Google Analytics with GDPR compliant cookie consent in NextJS 13
-date: '20 Mar 2023 12:00'
+date: '22 Mar 2023 17:11'
 description: How to setup Google Analytics Consent Mode inside a NextJS 13 application (using the new App Router) with TypeScript. Consent mode will ask the user for consent before storing cookies in the browser.
 #tags: ['functions', 'javascript']
 ---
@@ -32,7 +32,7 @@ Setup Google Analytics
 
 First step is to setup Google Analytics. To follow along with this post, you'll need the **Measurement ID** of a Web Data Stream.
 
-![New Google Analytics Web Stream](/img/blog/google-analytics/google-analytics-new-web-stream.png "New Google Analytics Web Stream")
+![New Google Analytics Web Stream](/img/blog/google-analytics/google-analytics-new-web-stream.webp "New Google Analytics Web Stream")
 Add Google Analytics to NextJS 13
 ---------------------------------
 
@@ -148,7 +148,7 @@ Cookie Banner React Component
 Now we have google analytics working for NextJS 13, including when we change pages. However, this is currently not GDPR compliant as it will use cookie tracking by default. We need to use [Google Analytics Consent Mode](https://support.google.com/analytics/answer/9976101) in order to allow users to opt-in to cookie tracking.
 
 
-![Cookie Banner Component TailwindCSS](/img/blog/google-analytics/cookie-banner-component.png "Cookie Banner Component using TailwindCSS")
+![Cookie Banner Component TailwindCSS](/img/blog/google-analytics/cookie-banner-component.webp "Cookie Banner Component using TailwindCSS")
 
 To start will, we'll add a new mobile responsive component called Cookie Banner which will allow our users to opt-in or opt-out of cookies. Copy the code below into a component called `cookiebanner.tsx`. 
 
@@ -301,7 +301,7 @@ Analytics Storage and Ad Storage.
 - `gcs=G1-0` - means that both Ad Storage hasn't been set and Analytics has been granted
 
 
-![Google Analytics Collect Ping in Network Tab](/img/blog/google-analytics/google-analytics-consent-network-tab.png "Google Analytics Collect Ping in Network Tab")
+![Google Analytics Collect Ping in Network Tab](/img/blog/google-analytics/google-analytics-consent-network-tab.webp "Google Analytics Collect Ping in Network Tab")
 
 
 
