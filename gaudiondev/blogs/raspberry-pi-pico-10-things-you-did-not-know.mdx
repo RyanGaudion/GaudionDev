@@ -1,0 +1,66 @@
+---
+title: "Raspberry Pi Pico: 10 things you didn't know"
+date: '28 Mar 2023 19:29'
+description: "10 Facts to common questions about the Raspberry Pi Pico that you probably didn't know. Does it have WiFi? How powerful is it?"
+#tags: ['functions', 'javascript']
+---
+
+Here are 10 interesting facts about the Raspberry Pi Pico that you might not know:
+
+<YouTube id="itShsYThMUI"/>
+
+## 1) What processer does the Raspberry Pi Pico use?
+The Raspberry Pi Pico use's the Raspberry Pi Foundation's new [RP2040](https://www.raspberrypi.com/documentation/microcontrollers/rp2040.html) CPU chip which is based on 2 high speed ARM Cortex-M0+ processors. It has a clock speed of 133mhz which is fast when compared to the 16mhz of the [Arduino Uno](https://store.arduino.cc/products/arduino-uno-rev3/).
+
+## 2) Machine Learning with the Raspberry Pi Pico!
+Due to it's 2 Fast Cores as well as it's large amount of onboard RAM, the Pico is great for Machine Learning applications. Pete Warden (An open source contributor) has already created a [Port of Google's TensorFlow Lite codebase](https://github.com/raspberrypi/pico-tflmicro) - allowing you to run machine learning models on your Pico for things like voice recognition, gesture recognition from an accelerometer as well other sensor analysis tasks.
+
+
+## 3) Can I use the Raspberry Pi Pico as a USB device?
+The micro USB on the front of the Pico is normally used to power the board and send programs to it, however it also provides more advanced functionality. The Pico can act as a USB device and input data into your own computer in a similar way to a keyboard or mouse.
+    
+The Pico can also act as a USB Host allowing you can plug USB devices into the Pico- meaning you can plug a keyboard or mouse into your Pico and read inputs from these devices.
+
+
+## 4) Which languages does the Raspberry Pi Pico support?
+The Pico can be programmed through C/C++ with the [Raspberry Pi Pico SDK](https://github.com/raspberrypi/pico-sdk) and can also be programmed with the Python using MicroPython through an IDE such as [Thonny](https://projects.raspberrypi.org/en/projects/getting-started-with-the-pico/2). If you want to see how to get started with the Pico make sure to check out my [**Raspberry Pi Pico: First Impressions Video**](https://youtu.be/itShsYThMUI):
+
+<YouTube id="Ny8anyG6u1E"/>
+
+## 5) How much does the Raspberry Pi Pico cost?
+The Raspberry Pi Pico costs $4 (£3.60).
+
+In a recent interview with HackSpace - Eben Upton (Founder of the Raspberry Pi Foundation) stated that the development of the Pico microcontroller cost between £3-£4 million.
+    
+He says that they wanted to make something perfect and that there is no way to make a perfect thing without making your own silicon. Later he goes on to say "If [Apple] thought they could make great Macs with Intel chips then they wouldn't be making their own silicon", comparing their decision to develop custom chips with Apple's decision to develop their own M1 silicon chips instead of using Intel processors.
+
+
+## 6) Can you debug the Raspberry Pi Pico?
+When writing code for the Pico from a Raspberry Pi, you can hook up the debug pins on the Pico into the GPIO pins on the Raspberry Pi in order to debug it. However, if you are writing scripts from another Device such as a windows or Mac machine that doesn't have GPIO pins then it is possible to use a Pico microcontroller to debug another Pico using the PicoProbe application. 
+
+
+## 7) Raspberry Pi Pico - Low Power Mode
+The Pico microcontroller uses 10 times less power than the Raspberry Pi Zero when at full power consumption and up to 100 times less power when both are in an idling state. The Zero can consumes a few hundred milliwatts at it's lowest whereas the Pico can be beaten down to a few milliwatts.
+    
+In Sleep and Dormant modes the power consumption of the Pico drops to around 1mA, in this state is can wait for a particular event to wake back up again such as a particular time signal from the onboard real-time clock or a signal on one of the GPIO pins).
+
+## 8) Raspberry Pi Pico Onboard Sensors
+The Pico has an onboard Temperature Sensor as well as an accurate clock and timer onboard. This saves you from having to purchase external modules and sets it apart from other more expensive microcontrollers.
+    
+By using the On board clock you can shut your Pico down to a deep sleep and wake it up when required at a certain times of the day.
+
+
+## 9) Does Raspberry Pi Pico have WiFi?
+The team over at Arduino have announced the [Arduino Nano RP2040 Connect](https://blog.arduino.cc/2021/01/20/welcome-raspberry-pi-to-the-world-of-microcontrollers/) - a Nano sized MicroController using the Raspberry Pi's RP2040 chip - Their development board however, will contains WiFi and Bluetooth as well as have a built in 9-axis IMU (Inertial Measurement Unit) in addition to an onboard Microphone.
+    
+The team is also currently working on porting over the current Arduino Core over to the new RP2040 chip allowing user to develop for this new chip using the existing Arduino IDE and 3rd Party Libraries.
+
+> Since this was first written, the [Raspberry Pi Pico W](https://thepihut.com/products/raspberry-pi-pico-w) has been announced with built-in 2.4GHz WiFi. This is made available through the use of the Infineon CYW43439 wireless chip which natively supports Bluetooth 5.2; however bluetooth is not software-supported at launch.
+
+## 10) To the Moon
+The Raspberry Pi Pico is more powerful than the Apollo 11 Guidance Computer - The Pico boasts 2MB of on board flash memory, where as the Apollo 11 Guidance Computer that first sent man to the moon in 1969 only had 74kb. [The Pico has 264kb of RAM](https://magpi.raspberrypi.org/articles/raspberry-pi-pico-microcontroller-specifications-features-and-rp2040) which is 66 times more than the [4kb on the Guidance Computer](https://www.bbc.com/future/article/20190704-apollo-in-50-numbers-the-technology).
+    
+The Guidance Computer also had a clock speed of [1mhz](https://history.nasa.gov/computers/Ch2-5.html) whereas the Pico runs at 133mhz.
+
+
+And that wraps up 10 things you may not have known about the Raspberry Pi Pico.
