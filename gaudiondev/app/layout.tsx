@@ -1,5 +1,6 @@
 import './globals.css'
 import GoogleAnaytics from '@/components/GoogleAnalytics';
+import { Analytics }  from '@vercel/analytics/react';
 import CookieBanner from '@/components/CookieBanner';
 import { Metadata } from 'next';
 
@@ -25,6 +26,7 @@ export default function RootLayout({
         {children}
         <CookieBanner/>
       </body>
+      <Analytics/>
     </html>
   )
 }
