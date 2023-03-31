@@ -27,9 +27,9 @@ export default function Blog({ params } :any) {
 
     return (
         <main className="wrapper">
-            <div className='mdx'>
+            <article className='mdx'>
                 <BlogComponent blog={blog} />
-            </div>
+            </article>
         </main>
     )
 

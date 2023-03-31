@@ -6,6 +6,7 @@ import YouTube from "../components/mdx/YouTube"
 import rehypeHighlight from "rehype-highlight";
 import remarkGfm from 'remark-gfm'
 
+import rehypeSlug from 'rehype-slug'
 
 
 export function GetAllMDXComponents(){
@@ -16,7 +17,7 @@ export function GetMdxOptions(){
     return {
         mdxOptions: {
           remarkPlugins: [remarkGfm],
-          rehypePlugins: [rehypeHighlight],
+          rehypePlugins: [rehypeHighlight, rehypeSlug],
         }
     }
 }
