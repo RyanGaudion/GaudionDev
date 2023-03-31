@@ -1,0 +1,97 @@
+---
+title: 'Identify your Raspberry Pi Model, RAM Size and OS/Distro (2023)'
+date: '31 Mar 2023 13:28'
+description: 'How to tell which model of Raspberry pi you have, check how much RAM is on your Raspberry Pi and which OS /Distro your Pi is running?'
+#tags: ['functions', 'javascript']
+---
+There are over 12 variations of the Raspberry Pi - each with their own configuration of ports, RAM sizes and features. On top of this, every owner can then install a different operating system of choice onto their Pi. 
+
+This blog will show you how to identify any Raspberry Pi, check the Pi's specs and see what operating system your Pi is running.
+
+
+How to tell which model of Raspberry Pi you have?
+------------------------------------------------
+
+To check which model of Raspberry Pi you have, you can run this 1 simple command:
+
+```
+cat /proc/cpuinfo
+```
+
+![Raspberry Pi - cpuinfo command](/img/blog/raspberry-pi/which-pi/which-raspberry-pi-command.webp)
+
+You can now take a look at the revision number and check it against the following table, [**updated here**](https://elinux.org/RPi_HardwareHistory).
+
+
+| Revision  | Model                           | RAM Size        |
+| --------- | ------------------------------- | --------------- |
+| a*xx*04*x*| 2 Model B                       | 1 GB            |
+| 900021    | A+                              | 512 MB          |
+| 900032    | B+                              | 512 MB          |
+| 90009*x*  | Zero                            | 512 MB          |
+| 9000c1    | Zero W                          | 512 MB          |
+| a*x*2082  | 3 Model B                       | 1 GB            |
+| a020a0    | Compute Module 3                | 1 GB            |
+| a020d3    | 3 Model B+                      | 1 GB            |
+| 9020e0    | 3 Model A+                      | 512 MB          |
+| a02100    | Compute Module 3+               | 1 GB            |
+| *x*0311*x*| 4 Model B                       | 1-8 GB          |
+| 902120    | Zero 2 W                        | 512 MB          |
+
+> If your revision number isn't in the above table: [**take a look here**](https://elinux.org/RPi_HardwareHistory).
+
+
+How to check how much RAM (memory) your Raspberry Pi has?
+--------------------------------------------------------
+
+To check how much RAM your Raspberry Pi has, you can try 1 of the 2 options.
+
+
+### 1. CPU Info
+
+If you follow the above step to find out which Raspberry Pi you have, you can follow this link to [elinux.org](https://elinux.org/RPi_HardwareHistory) to find out how much RAM that specific Raspberry Pi Model has.
+
+### 2. Free Command
+To see how much RAM you have have, how much RAM you have used and how much is available on your Raspberry Pi, you can use this simple command:
+
+```bash
+free -h
+```
+
+```
+              total        used        free      shared  buff/cache   available
+Mem:          7.7Gi       205Mi       6.2Gi       163Mi       1.3Gi       7.1Gi
+Swap:          99Mi          0B        99Mi
+```
+
+
+This command will show you the `total` amount of RAM, the amount of RAM that is `used` and the amount that is `free`.  
+
+
+Identify which OS/Distro your Pi is running?
+--------------------------------------------
+To know which Raspberry Pi you have, you can use one of these 2 methods.
+
+
+### 1. Standard Base Release Command 
+To see which Operating System our Raspberry Pi is running, we can run the following Linux Standard Base Command. 
+
+```
+lsb_release -a
+```
+
+![Linux Standard Base Release Command](/img/blog/raspberry-pi/which-pi/linux-standard-base-release-command.webp)
+
+Ad we can see, this Raspberry Pi is running Raspbian 9.13.
+
+### 2. Cat Release Information
+
+As an alternative approach to see which Linux Distribution our Raspberry Pi is running, we can run this cat command:
+
+```
+cat /etc/*-release
+```
+
+![Which Raspberry Pi OS are you running?](/img/blog/raspberry-pi/which-pi/linux-cat-release.webp)
+
+This shows us that we're running Raspbian Stretch 9.
