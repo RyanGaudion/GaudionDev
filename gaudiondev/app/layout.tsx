@@ -9,6 +9,14 @@ export const metadata : Metadata = {
   description: 'Hi, I\'m Ryan Gaudion: Software Developer, Video Creator & Blogger. Writing about tech topics, including Raspberry Pis and Software Development.',
   openGraph : {
     siteName : "Ryan Gaudion"
+  },
+  alternates : {
+    canonical: "http://gaudion.dev/",
+    types: {
+      'application/rss+xml': [
+        { url: 'rss.xml', title: 'Gaudion.Dev RSS Feed' }
+      ],
+    },
   }
 }
 

@@ -2,9 +2,11 @@
 import { getAllBlogsInfo, getBlog } from '@/lib/blogHelper'
 import { notFound } from 'next/navigation';
 import BlogComponent from '@/components/Blog';
+import generateRssFeed from '@/lib/rssHelper';
 
 
 export async function generateStaticParams() {
+    await generateRssFeed(); //Don't delete
     return getAllBlogsInfo()
 }
 
