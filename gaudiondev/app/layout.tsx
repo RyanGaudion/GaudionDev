@@ -3,6 +3,7 @@ import GoogleAnaytics from '@/components/GoogleAnalytics';
 import { Analytics }  from '@vercel/analytics/react';
 import CookieBanner from '@/components/CookieBanner';
 import { Metadata } from 'next';
+import { site_url } from '@/lib/rssHelper';
 
 export const metadata : Metadata = {
   title: 'Ryan Gaudion: Software Developer Portfolio & Programming Blog',
@@ -11,7 +12,7 @@ export const metadata : Metadata = {
     siteName : "Ryan Gaudion"
   },
   alternates : {
-    canonical: "http://gaudion.dev/",
+    canonical: site_url,
     types: {
       'application/rss+xml': [
         { url: 'rss.xml', title: 'Gaudion.Dev RSS Feed' }

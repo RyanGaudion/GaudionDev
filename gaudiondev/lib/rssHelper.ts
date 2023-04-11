@@ -3,8 +3,10 @@ import { getAllBlogs } from './blogHelper';
 import fs from 'fs';
 import path from 'path';
 
+export const site_url = 'https://gaudion.dev';
+
 export default async function generateRssFeed() {
-    const site_url = 'gaudion.dev';
+    
 
     const allPosts = getAllBlogs();
 
