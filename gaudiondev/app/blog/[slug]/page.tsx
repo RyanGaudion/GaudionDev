@@ -22,6 +22,14 @@ export async function generateMetadata({ params, searchParams } : any){
         }
     }
 
+    meta.twitter = {
+        card: "summary_large_image",
+        site: "@Ryan_Gaudion",
+        creator: "@Ryan_Gaudion",
+        title: blog?.meta?.title,
+        description: blog?.meta?.description,
+    }
+
     if(blog?.meta?.image){
         const imageArray = Array.isArray(blog?.meta?.image) ? blog?.meta?.image : [blog?.meta?.image]
 
@@ -29,12 +37,8 @@ export async function generateMetadata({ params, searchParams } : any){
             ...meta.openGraph,
             images: imageArray
         }
-    }
 
-    meta.twitter = {
-        card: "summary_large_image",
-        site: "@Ryan_Gaudion",
-        creator: "@Ryan_gaudion"
+        meta.twitter.images = imageArray
     }
 
     return meta;
