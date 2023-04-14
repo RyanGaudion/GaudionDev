@@ -16,6 +16,7 @@ export interface BlogMeta{
     date?: Date
     description?: string
     author?: string
+    image? : string | string[]
 }
 
 export interface BlogItem {

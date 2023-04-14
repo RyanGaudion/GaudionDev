@@ -3,6 +3,7 @@ import { getAllBlogsInfo, getBlog } from '@/lib/blogHelper'
 import { notFound } from 'next/navigation';
 import BlogComponent from '@/components/Blog';
 import generateRssFeed from '@/lib/rssHelper';
+import { Metadata } from 'next';
 
 
 export async function generateStaticParams() {
@@ -10,13 +11,24 @@ export async function generateStaticParams() {
     return getAllBlogsInfo()
 }
 
-export async function generateMetadata({ params, searchParams } : any) {
+export async function generateMetadata({ params, searchParams } : any){
     const blog = getBlog(params.slug);
 
-    return{
+    const meta : Metadata = {
         title: blog?.meta?.title,
         description: blog?.meta?.description,
     }
+
+    if(blog?.meta?.image){
+        const imageArray = Array.isArray(blog?.meta?.image) ? blog?.meta?.image : [blog?.meta?.image]
+
+        meta.openGraph = {
+            ...meta.openGraph,
+            images: imageArray
+        }
+    }
+
+    return meta;
 }
 
 //Fix Any

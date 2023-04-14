@@ -12,7 +12,6 @@ export const metadata : Metadata = {
     siteName : "Ryan Gaudion"
   },
   alternates : {
-    canonical: site_url,
     types: {
       'application/rss+xml': [
         { url: 'rss.xml', title: 'Gaudion.Dev RSS Feed' }
