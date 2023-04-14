@@ -28,6 +28,12 @@ export async function generateMetadata({ params, searchParams } : any){
         }
     }
 
+    meta.twitter = {
+        card: "summary_large_image",
+        site: "@Ryan_Gaudion",
+        creator: "@Ryan_gaudion"
+    }
+
     return meta;
 }
 
