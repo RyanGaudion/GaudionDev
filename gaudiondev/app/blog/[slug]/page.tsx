@@ -17,6 +17,9 @@ export async function generateMetadata({ params, searchParams } : any){
     const meta : Metadata = {
         title: blog?.meta?.title,
         description: blog?.meta?.description,
+        openGraph: {
+            type : "article"
+        }
     }
 
     if(blog?.meta?.image){
