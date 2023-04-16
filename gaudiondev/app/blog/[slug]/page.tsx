@@ -23,7 +23,7 @@ export async function generateMetadata({ params, searchParams } : any){
     }
 
     meta.twitter = {
-        card: "summary_large_image",
+        card: "summary",
         site: "@Ryan_Gaudion",
         creator: "@Ryan_Gaudion",
         title: blog?.meta?.title,
@@ -39,6 +39,11 @@ export async function generateMetadata({ params, searchParams } : any){
         }
 
         meta.twitter.images = imageArray
+
+        meta.twitter = {
+            ...meta.twitter,
+            card: "summary_large_image"
+        }
     }
 
     return meta;
