@@ -20,7 +20,7 @@
     "client-only": "^0.0.1",
     "eslint": "8.36.0",
     "eslint-config-next": "13.2.4",
-    "next": "13.2.4",
+    "next": "^13.3.1-canary.10",
     "next-sitemap": "^4.0.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
