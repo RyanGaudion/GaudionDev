@@ -15,6 +15,10 @@
     .mdx {
       @apply prose prose-sm md:prose-base lg:prose-lg prose-gray !prose-invert prose-quoteless max-w-none prose-code:before:hidden prose-code:after:hidden
     }
+
+    .mdx img{
+      @apply mx-auto;
+    }
   }
 
 
