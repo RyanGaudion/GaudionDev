@@ -4,6 +4,8 @@ import { Analytics }  from '@vercel/analytics/react';
 import CookieBanner from '@/components/CookieBanner';
 import { Metadata } from 'next';
 import { site_url } from '@/lib/rssHelper';
+import { Suspense } from "react";
+
 
 export const metadata : Metadata = {
   title: 'Ryan Gaudion: Software Developer Portfolio & Programming Blog',
@@ -29,10 +31,14 @@ export default function RootLayout({
 
   return (
     <html lang="en-GB">
-      <GoogleAnaytics GA_MEASUREMENT_ID='G-9N7KFV3730'/>
+      <Suspense>
+        <GoogleAnaytics GA_MEASUREMENT_ID='G-9N7KFV3730'/>
+      </Suspense>
       <body className='bg-gray-900 text-white'>
         {children}
-        <CookieBanner/>
+        <Suspense>
+          <CookieBanner/>
+        </Suspense>
       </body>
       <Analytics/>
     </html>
