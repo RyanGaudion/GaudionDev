@@ -5,11 +5,23 @@ description: Learn all about MDX (Extended Markdown) with this comprehensive gui
 image: "/img/blog/meta/mdx-ultimate-guide.png"
 ---
 
+- [What is MDX?](#what-is-mdx)
+- [How does MDX work?](#how-does-mdx-work)
+- [MDX Features](#features-of-mdx)
+- [When to use MDX?](#when-to-use-mdx)
+- [How to setup MDX?](#how-to-setup-mdx)
+- [MSX Metadata with Frontmatter](#frontmatter)
+- [Styling MDX with TailwindCSS](#styling-mdx-with-tailwindcss)
+- [MDX Content Management System](#mdx-with-a-content-management-system)
+- [Pros & Cons of MDX](#pros--cons-of-mdx)
+
 ## What is MDX?
 
 MDX is a file format that allows developers to use both Markdown and JSX syntax together. When you write an MDX file, you can include Markdown syntax for simple text formatting, such as headings, lists, and links, as well as JSX syntax for more complex UI components. It stands for "Markdown eXtended" and is commonly used for documentation in React based projects.
 
 Overall, MDX makes it easier to create rich and interactive content that combines the simplicity of Markdown with the power and flexibility of JSX.
+
+![Rendered MDX](/img/blog/mdx/rendered-mdx.webp)
 
 ## How does MDX work?
 
@@ -32,6 +44,8 @@ You can use JavaScript in-line to dynamic calculate values. For example, the fol
 ### 2) JSX Components
 
 JSX is the JavaScript extension commonly used by React in order to render components on the page. As MDX has full JSX support, you can add normal React-based components into your markdown page. JSX has a full ecosystem of existing components which you can import directly into your MDX pages. Common use-cases for JSX components would be to include [YouTube video embeds](/blog/mdx-youtube-embed) or [syntax highlighting](/blog/mdx-syntax-highlighting) inside your MDX page.
+
+![YouTube Embed Component](/img/blog/mdx/mdx-youtube-embed.webp)
 
 ### 3) Customisable
 
@@ -66,6 +80,19 @@ MDX shouldn't be used on every page in your site. Instead it should be used on â
 
 Using [MDX Deck](https://github.com/jxnblk/mdx-deck), you can actually create presentation decks using solely markdown and JSX components. This package comes with pre-built themes, requires zero configuration and has normal presentation features such as "Presenter Mode" & "Speakers Notes".
 
+[![MDX Deck - Presentations with MDX](/img/blog/mdx/mdx-deck-presentations.webp)](https://github.com/jxnblk/mdx-deck)
+
+## How to setup MDX?
+
+MDX can be used in any JSX runtime such as React or Vue or a React based front-end framework such as Next.JS or Gatesby.
+
+Depending on your framework choice, there are many ways you can setup and use MDX inside your application.
+
+- Gatsby - [gatsby-plugin-mdx](https://www.gatsbyjs.com/plugins/gatsby-plugin-mdx/)
+- Next.js - [Next.js 13 MDX Blog using next-mdx-remote](/blog/nextjs-mdx-blog)
+- Vue - [@mdx-js/vue](https://mdxjs.com/packages/vue/)
+- Nuxt.js - [nuxt/mdx](https://mdx.nuxtjs.org/) 
+
 ## Frontmatter
 
 Just like in normal markdown files, [Frontmatter](https://mdxjs.com/guides/frontmatter/) can be used to add Metadata to our MDX files. This metadata is stored in YAML at the top of the mdx file, and any key-value pairs can be used. In a MDX based blog, you might use frontmatter to store the blog's title, description and cover image so that a preview of the blog can easily be displayed on a different page:
@@ -81,16 +108,6 @@ image: "/blog/meta/mdx-ultimate-guide.png"
 
 Using a package such as [grey-matter](https://github.com/jonschlinkert/gray-matter), you can easily split the metadata from the page content to use within your application. MDX Metadata can also be used to set meta tags on your MDX pages in order to increase the SEO of your page.  
 
-## How to setup MDX?
-
-MDX can be used in any JSX runtime such as React or Vue or a React based front-end framework such as Next.JS or Gatesby.
-
-Depending on your framework choice, there are many ways you can setup and use MDX inside your application.
-
-- Gatsby - [gatsby-plugin-mdx](https://www.gatsbyjs.com/plugins/gatsby-plugin-mdx/)
-- Next.js - [Next.js 13 MDX Blog using next-mdx-remote](/blog/nextjs-mdx-blog)
-- Vue - [@mdx-js/vue](https://mdxjs.com/packages/vue/)
-- Nuxt.js - [nuxt/mdx](https://mdx.nuxtjs.org/) 
 
 ## Styling MDX with TailwindCSS
 
@@ -103,6 +120,8 @@ Instead, you can use the [Typography Plugin](https://tailwindcss.com/docs/typogr
 It's very simple to install and requires you simply add the `prose` css className to the root div of your mdx page.
 
 [Click here](/blog/nextjs-mdx-blog#1-setting-up-our-app) to setup TailwindCSS Typography with Next.js.
+
+[![TailwindCSS Typography](/img/blog/mdx/tailwindcss-typography.webp)](https://tailwindcss.com/docs/typography-plugin)
 
 ## MDX with a Content Management System
 
@@ -117,3 +136,9 @@ MDX can be stored inside a CMS (Content Management System) and pulled into your 
 | **MDX is Fast** - It renders/compiles at build-time rather than at runtime | **Setup is Required** - Frameworks such as Next.js have MDX support, but setup is required.    |
 | **Extendable** - Functionality can be added via either JSX Components or Rehype/Remark Plugins | |
 | **TailwindCSS** Support - Automatic styling of your MDX components using the `prose` class from the TailwindCSS Typography plugin. |
+
+## Related Blogs
+ - [MDX Blog - With Next.js 13](/blog/nextjs-mdx-blog)
+ - [YouTube Video -  MDX Component](/blog/mdx-youtube-embed)
+ - [Custom Link - MDX Component](/blog/mdx-link-component)
+ - [Syntax Highlighting with MDX Blog](/blog/mdx-syntax-highlighting)
