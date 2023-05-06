@@ -1,0 +1,87 @@
+---
+title: "Open Links in a New Tab in your MDX Blog (Next.js 13)"
+date: '06 May 2023 15:52' #'25 April 2023 17:11'
+description: Learn how to open links in a new tab on your MDX blog built with Next.js. Override the default "a" tag component with a custom one using MDX, and easily configure links to open in a new tab with this step-by-step guide.
+image: "/img/blog/meta/mdx-custom-link.png"
+---
+
+In order to keep users on your site you may want to open external links in your blog into new tabs (to keep your blog open in another tab). To do this in your MDX Next.js blog is very easy; you will simply need to create 1 component and add it to your mdx configuration.
+
+## 1. Custom Link Component
+
+In MDX you can open external links in a new tab by overriding the default component for “a” tags with a custom one. To do this create a new component called `CustomLink`.
+
+```tsx
+// components/mdx/CustomLink.tsx
+import Link from "next/link";
+
+export default function CustomLink(props : any){
+    const href = props.href;
+    const isInternalLink = href && (href.startsWith('/'));
+
+    if (isInternalLink) {
+      return (
+        <Link href={href}>
+          {props.children}
+        </Link>
+      );
+    }
+
+    return <a target="_blank" {...props} />;
+  };
+```
+
+This component checks the "href" prop to check if it starts with "/". If so this is an internal link and will use the default Next.js link component. Otherwise it'll fallback to a `a` tag with `target="_blank"` which opens the link in a new tab.
+
+## 2. Add to MDX Configuration
+
+You then need to add this component to your mdx configuration and override the default `a` tag component. Whether you are using `MDXRemote` or the default `@next/mdx` depends on how you overwrite the default a component: 
+
+### With MDXRemote
+
+```tsx
+// app/blog/[slug]/page.tsx
+import CustomLink from '@/components/mdx/CustomLink';
+
+...
+
+<MDXRemote source={props.content} components={{a: CustomLink}} />
+```
+
+### With @next/mdx
+With `@next/mdx` you can either use the `useMDXComponents` method or via the `MDXProvider` component 
+
+
+Using `useMDXComponents`:
+```tsx
+// mdx-components.tsx
+import CustomLink from '@/components/mdx/CustomLink';
+
+...
+
+export function useMDXComponents(components: MDXComponents): MDXComponents {
+  return {
+    a: CustomLink,
+    ...components,
+  }
+}
+```
+
+Using `MDXProvider`:
+```tsx
+// app/blog/[slug]/page.tsx
+import CustomLink from '@/components/mdx/CustomLink';
+
+...
+
+<MDXProvider components={{a: CustomLink }}>
+      {/* Render your MDX content */}
+</MDXProvider>
+```
+
+ ## Related Blogs
+{/*TODO:MDX - [YouTube Video -  MDX Component](/blog/mdx-youtube-embed)*/}
+ - [MDX Blog - With Next.js 13](/blog/nextjs-mdx-blog)
+ - [What is MDX?](/blog/what-is-mdx)
+ - [Google Analytics with Next.js](/blog/setup-google-analytics-with-gdpr-compliant-cookie-consent-in-nextjs13)
+ {/*TODO:MDX - [Syntax Highlighting with MDX Blog](/blog/mdx-syntax-highlighting)*/}
