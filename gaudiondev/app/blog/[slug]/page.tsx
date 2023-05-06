@@ -38,7 +38,7 @@ export async function generateMetadata({ params, searchParams } : any){
             images: imageArray
         }
 
-        meta.twitter.images = imageArray
+        meta.twitter.images = imageArray[0]
 
         meta.twitter = {
             ...meta.twitter,
