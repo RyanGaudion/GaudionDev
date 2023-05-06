@@ -42,7 +42,7 @@ export async function generateMetadata({ params, searchParams } : any){
 
         meta.twitter = {
             ...meta.twitter,
-            card: "summary_large_image"
+            card: meta.twitter.images ? "summary_large_image" : "summary"
         }
     }
 
