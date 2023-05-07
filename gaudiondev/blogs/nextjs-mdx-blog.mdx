@@ -44,7 +44,7 @@ When prompted we will select the following options:
 - Use ESLint - Yes
 - Use `src/` directory - No
 - Use `app/` directory - Yes
-- What Import Alias - Leave this as the default
+- Would you like to customize the default import alias - No
 
 ### Setup Packages
 
@@ -66,6 +66,16 @@ module.exports = {
     require('@tailwindcss/typography')
   ],
 }
+```
+
+#### Cleanup Default Styling
+In the `globals.css` file, remove all the pre-written CSS and replace it with the following. This imports tailwindcss into our application.
+
+```css
+/* globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 ```
 
 ### Basic Styling 
@@ -426,6 +436,8 @@ First we setup our mdx options:
 
 ```tsx
 // app/blog/[slug]/page.tsx
+import remarkGfm from 'remark-gfm'
+
 const options = {
     mdxOptions: {
         remarkPlugins: [remarkGfm],
@@ -458,6 +470,6 @@ That is it, now you have a MDX blog created with Next.js. There are now many are
 
  - [What is MDX?](/blog/what-is-mdx)
  - [Google Analytics with Next.js](/blog/setup-google-analytics-with-gdpr-compliant-cookie-consent-in-nextjs13)
-{/*TODO:MDX - [YouTube Video -  MDX Component](/blog/mdx-youtube-embed)*/}
  - [Custom Link - MDX Component](/blog/mdx-link-component)
+ {/*TODO:MDX - [YouTube Video -  MDX Component](/blog/mdx-youtube-embed)*/}
 {/*TODO:MDX  - [Syntax Highlighting with MDX Blog](/blog/mdx-syntax-highlighting)*/}
