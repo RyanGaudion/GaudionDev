@@ -1,0 +1,81 @@
+---
+title: How to embed YouTube Videos in MDX Using Next.js
+date: '9 May 2023 19:38'
+description: Simple step-by-step guide to creating a reusable MDX YouTube component that lets you to embed YouTube videos into your MDX files. This tutorial uses Next.Js and TypeScript but should be similar in Gatsby too.
+image: "/img/blog/mdx/mdx-youtube-embed.png"
+---
+
+![YouTube Video Embedded in MDX Page using Next.Js](/img/blog/mdx/mdx-youtube-embed.png)
+
+In this tutorial I'll show you how to setup a YouTube Video Embed Component (in Next.Js) for your MDX pages that will allow you to share your videos across your Markdown Pages.
+
+## Requirements 
+
+For this tutorial, I expect you've already got MDX setup inside your Next.Js application. If you haven't done this yet then follow this tutorial:
+
+> [MDX Next.Js Blog Tutorial](/blog/nextjs-mdx-blog)
+
+## 1) YouTube Video Embed - MDX Component
+
+The first thing we need to do is to create our new component. Inside my application this will go in the `components/mdx` folder in a file called `YouTube.tsx`.
+
+```tsx
+//components/mdx/YouTube.tsx
+export default function YouTube ({ id } : { id : string }){
+  return (
+    <div>
+      <iframe
+        className="aspect-video w-full"
+        src={"https://www.youtube.com/embed/" + id}
+        title="YouTube Video Player"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      ></iframe>
+    </div>
+  );
+};
+```
+
+Let's take a look at the different parts of this:
+- `iframe` - this allows us to embed other web pages inside of our application.
+- `aspect-video` & `w-full` - these are TailwindCSS classes that will set the width of the video to 100% and ensure the aspect ratio stays at 16:9.
+- `src` - here we set our iframe to the YouTube embed URL with our video ID as a parameter. See below how to find your YouTube video ID.
+- `allow` - This gives us control over which permissions we allow for the YouTube iframe. 
+
+## 2) Import your MDX Component
+
+Before we can use this component on our page, we first need to add it to our MDX components. For this tutorial, I'm using `next-mdx-remote`, however this is very similar for all MDX packages:
+
+First import our YouTube component:
+
+```tsx
+// app/blog/[slug]/page.tsx
+import YouTube from '@/components/mdx/YouTube'
+```
+
+Then add the component to our mdx components: 
+
+```tsx
+// app/blog/[slug]/page.tsx
+<MDXRemote source={props.content} components={{Button, YouTube}}/>
+```
+
+## 3) Embed YouTube Videos in your MDX Pages
+
+Now that the component is setup, we can add YouTube videos to our mdx blogs like this:
+
+```jsx
+// blogs/first-blog.mdx
+
+<YouTube id="gCbGmAFqLoU"/>
+```
+
+Make sure you change the ID to that of the specific YouTube video you want to embed. With that complete, your page will have a YouTube video embedded directly within it like this video below:
+
+<YouTube id="DJMTWuz2ksk"/>
+{/*TODO:MDX - Change to YouTube Embed Video*/}
+
+## Recommended Content
+
+It's as simple as that; you now have YouTube videos embedded in your MDX pages with your Next.Js application. 
+
+Find out more about additional [YouTube Embed features](https://developers.google.com/youtube/player_parameters) such as Autoplay. Or learn how to [Setup your own MDX Next.Js Blog](/blog/nextjs-mdx-blog).
