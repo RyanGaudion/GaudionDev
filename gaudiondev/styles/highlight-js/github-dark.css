@@ -11,7 +11,8 @@
   Here: https://raw.githubusercontent.com/highlightjs/highlight.js/main/src/styles/github-dark.css
 */
 
-.hljs {
+
+  pre:has(.hljs), .hljs {
     color: #c9d1d9;
     background: #0d1117;
   }
