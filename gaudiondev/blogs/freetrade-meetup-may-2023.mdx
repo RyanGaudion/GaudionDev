@@ -1,0 +1,82 @@
+---
+title: 'Freetrade Meetup: AI Portfolio Advisor, Mutual Funds + Proxy Voting'
+date: '19 May 2023 9:45'
+description: "At Freetrade's May 2023 Community Meetup (Meet the CTO), they announced new features, including an AI Portfolio Assistant, mutual funds, proxy voting & auto-investing"
+image: "/img/blog/freetrade/freetrade-community-meetup-may-2023.png"
+#tags: ['functions', 'javascript']
+---
+
+![Freetrade Community Meetup 18th May 2023](/img/blog/freetrade/freetrade-community-meetup-may-2023.webp)
+
+Yesterday, Freetrade held another Community Meetup event: "Meet the CTO" with Shahid Naveed their recently hired CTO (Nov 2022), Adam Dodds (CEO & Founder), Viktor Nebehaj (CMO & Co-Founder), James Bell (VP Product), Omar Farag (Partnerships Lead).
+
+Shahid shared his journey to Freetrade as an ex-Amazon employee and with James they shared some upcoming features.
+
+## Features
+
+### Just Released
+
+Freetrade have just released annual subscriptions for their different account tiers providing a 17% discount for customers who subscribe annually.
+
+This was released so quickly due to the use of an external payment partner, which saved the team a lot of development work from having to build annual subscriptions themselves.
+
+### Coming Soon
+
+The next set of features are "coming soon", hopefully within the next months:
+
+1. **Direct Debits** - top-up cash balance within your account
+2. **Recurring Orders** - Using any cash balance
+3. **Percentage Allocations** - Automatically being able to buy stocks every month and using this to re-distribute portfolio to set percentages of each stock
+4. **Proxy Voting** - For US investments only, provided via a 3rd party service
+
+### What's Next
+
+The next big announcement was the introduction of **mutual funds** and eventually money market accounts too. I believe this has just been scoped out and development will start soon, with an internal target of Summer 2023. 
+
+This seems to have replaced the short-term goal of JISAs & LISAs as Freetrade believe the addition of mutual funds will allow more people to transfer across their full portfolio into Freetrade (especially SIPPs), helping to achieve Freetrades goal of being the *"Long term & primary investing partner"* of their customers.
+
+### Longer Term
+
+There were many longer term features that were spoken about but not confirmed, such as:
+
+#### JISA & LISA
+
+JISA (Junior ISAs) and LISA (Lifetime ISAs) were the 2 high priority items at the [last community event](/blog/freetrade-meetup-april-2023) however it was announced that these will no longer be the imminent priority.
+
+Of course, these will still be achieved but with the current markets, Mutual Funds were decided to be more valuable.
+
+Adam Dodds did confirm on Twitter that [JISAs should be available later this here](https://twitter.com/doddsie/status/1659148125863288835?s=20).
+
+#### Security Lending
+
+Security lending is not too far away from being complete however it was put on hold due to some industry/regulatory decisions. Not too much was said as to what these were but it was confirmed that once these issues go away, security lending will start.
+
+#### European Shares
+
+UK access to more european shares still has a small amount of effort left due to the following issues. Hopefully these can be resolved quickly:
+
+- **Swedish Shares for UK App** - Currently available in the Swedish App but due to currency pair/exchange needs, there is still more work to do in the UK
+- **French Shares** - Many European countries such as France & Spain have the FTT (Financial Transaction Tax) which Freetrade need to do a small amount of work to support before they can start offering these stocks on their platform.
+
+#### Options Trading
+
+It was asked by a community member if Options Trading would be coming to the platform however as Adam summed up, it wouldn't be appropriate for the majority of their customers.
+
+Adam did go on to say maybe in the future  it would be offered to "advanced" users potentially through a pro tier plan. But it is not currently a planned feature.
+
+## AI @ Freetrade
+
+At the last community meetup too, we heard how AI was being used internally at Freetrade to provide better efficiencies. That message was echoed again this time round with a trial of GitHub Co-Pilot being worked internally to see how AI can help write code. Currently they have found it useful for only writing boiler plate code and even then struggling with writing the most optimal code until prompted again by the engineer.
+
+However, at this meetup an **AI Portfolio Advisor** proof of concept was demoed. This assistant would be integrated into both the "Discovery" page to ask questions on public stock data as well as the "Insights" page, to ask specific questions about your portfolio.
+
+Here are the kind of questions you would be expected to ask about your portfolio:
+
+- What's my combined total of dividends over the past year?
+- What's my highest paying dividend stock?
+- What if I had brought stock X instead of stock Y? 
+
+This was only a proof of concept and still has a major concern to deal with first - how to ask questions about a portfolio to the OpenAI ChatGPT API without leaking user's portfolio data.
+
+It was stated that a phased approach would be used, to focus on "public" data questions first with a potential to move to a B2B LLM (Large Language Model) in the future (potentially using Google Cloud) to better protect user data.
+
