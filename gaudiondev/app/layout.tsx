@@ -16,7 +16,7 @@ export const metadata : Metadata = {
   alternates : {
     types: {
       'application/rss+xml': [
-        { url: 'rss.xml', title: 'Gaudion.Dev RSS Feed' }
+        { url: '/rss.xml', title: 'Gaudion.Dev RSS Feed' }
       ],
     },
   }
