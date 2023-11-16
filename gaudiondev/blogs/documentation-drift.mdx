@@ -1,0 +1,60 @@
+---
+title: 'What is Documentation Drift and How to Avoid It?'
+date: '16 Nov 2023 16:29'
+description: 'In software development, Documentation Drift refers to the ongoing process of a codebase becoming out of sync with its documentation. This occurs when new features, improvements, or changes are made to the codebase without the accompanying documentation being updated accordingly.'
+image: ["/img/blog/definitions/documentation-drift.webp"]
+#tags: ['functions', 'javascript']
+---
+
+In software development, **Documentation Drift** refers to the ongoing process of a codebase becoming out of sync with its documentation. This occurs when new features, improvements, or changes are made to the codebase without the accompanying documentation being updated accordingly. These differences can cause confusion within the development team and gradually lead to the documentation no longer being used.
+
+![Documentation Drift](/img/blog/definitions/documentation-drift-wide.webp)
+
+## Why should we avoid Documentation Drift? 
+
+Documentation Drift should be avoided wherever possible as it leads to your codebase's documentation being out of sync with your codebase. Once developers realise this, they will start referring to the documentation less and less, until eventually your code's documentation is never used.
+
+For developers that do end up using your outdated documentation, it can be more confusing than if they never read the documentation in the first place. Outdated documentation may refer to features that no longer exist or "old ways" of using certain parts of the codebase. This can cause developers to waste many hours trying to use features that no longer exist.
+
+### Who's affected by documentation drift?
+    
+Documentation drift can harm many groups:
+
+- **Developer Documentation** - If the codebase's documentation is out of sync with the code itself, then this will lead to confusion for the development team. This confusion between the code and the docs leads to wasted time spent trying to match up the two. 
+
+- **External Documentation** - Documentation Drift is more prominent within internal documentation however it can still occur with your customer-facing external documentation. For companies that expose public APIs or SDKs, it is crucial to ensure these are always up to date with the latest version of your product.
+
+- **Ad Copy** - A form of documentation drift can occur on your public website where you may have old blogs/pages that refer to features or part of your application that are no longer available.
+
+### Why is good documentation so important?
+Good documentation is crucial for any development team for a variety of reasons:
+
+- **Onboarding New Developers** - Documentation is great in onboarding new developers to a project. Not only does it give them the background context of the project as a whole but also provides specific domain knowledge about different areas of the codebase. 
+- **Remove Knowledge Silos** - Knowledge silos can build up when development is completed by a single developer. Documentation is a great way to facilitate knowledge sharing between developers and means that if a crucial developer leaves the team, other developers can pick up where they left off.
+- **Remind Developers** - When working on a large codebase, it can be months before you return back to a feature that you've previously worked on. Good documentation is crucial in reminding yourself of the architecture of that feature - enabling you to continue development much quicker.
+
+## What causes Documentation Drift?
+
+Documentation Drift occurs when documentation is not a part of your software development process. Documentation can sometimes be considered a 2nd class citizen to the development process as it doesn't have a direct impact on the end product released to the customer. This leads to documentation being an afterthought to developers and normally a task not enjoyed by developers. 
+
+## How to Avoid Documentation Drift?
+To avoid documentation drift, we need to make it easy for developers to write documentation and through changes to our processes, make it a required part of the development/release process.
+
+To do this, we can add our documentation directly into our codebase via markdown files rather than using external documentation sites such as Confluence. By using tools such as [MKDocs](https://www.mkdocs.org/), we can automatically generate documentation sites from our markdown documentation files.
+
+Automatically generated documentation can also be used - not to replace manual documentation but to add to it. Tools such as [Swagger](https://swagger.io/) and [Comments in Code](https://stackoverflow.blog/2021/12/23/best-practices-for-writing-code-comments/) are great ways to generate additional docs.
+
+### Code Reviews
+Now that your documentation is part of the codebase itself, it can now be reviewed as part of your code reviews. Not only do we check that the code is high quality and tests have been written, but we can also check that documentation has been written for all merge requests that we review.
+
+### How to resolve existing Documentation Drift?
+The first step in resolving existing documentation drift is to avoid more documentation drift being created. To do this, you can use the steps above to build documentation into your development & release process.
+
+Once this is done, there are two approaches to removing existing documentation drift:
+
+1. **Eventual Consistency** - This is the easiest approach, can take a while for documentation drift to be resolved. When developers will naturally update documentation for a specific feature, eventual consistency requires that they also check that page for any other issues/mistakes that need to be updated. Eventually, as each feature is worked on, documentation that was out of date will slowly become up to date. As part of this, you can also require developers that access/read documentation to fix any issues they find along the way. One downside to this approach is that features that haven't worked on for a while can see their documentation being out of date for months (maybe even years).
+
+2. **Instant Consistency** - This is a lot more work upfront, however, it resolves documentation drift instantly. This requires developers to search through every page in their current documentation to identify issues in their documentation and then spend the time to resolve them. This has the disadvantage of taking developers away from writing features (which can be seen as a higher-value task).
+
+
+Regardless of the size of the project you're working on, documentation drift can occur. Make sure you make documentation a prominent part of your development process and don't try to fix past documentation drift until this is done first.
