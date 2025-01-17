@@ -9,7 +9,7 @@ export default function PortfolioPage() {
   return (
     <div className='wrapper'>
         <h1 className="text-3xl font-bold mb-6">My Portfolio</h1>
-        <div className="grid md:grid-cols-2 grid-cols-1 gap-6">
+        <div className="grid md:grid-cols-2 grid-cols-1 gap-8 md:gap-6">
             {portfolioData.map((stock, index) => (
             <PortfolioCard key={index} stock={stock} totalStake={totalStake}/>
             ))}
