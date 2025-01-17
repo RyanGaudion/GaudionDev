@@ -6,7 +6,6 @@ import nextMdx from "@next/mdx";
 const nextConfig = {
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'mdx'],
   experimental: {
-    appDir: true,
     mdxRs: true,
   },
 }
