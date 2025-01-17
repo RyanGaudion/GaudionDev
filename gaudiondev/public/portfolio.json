@@ -1,0 +1,51 @@
+[
+    {
+        "name": "Freetrade",
+        "logo": "/img/blog/freetrade/freetrade-banner.webp",
+        "stake": 0,
+        "sold": true,
+        "soldDetail": "January 2025 (IG Aquisition)",
+        "gainLoss": -65
+    },
+    {
+        "name": "Bolt",
+        "logo": "/img/logos/bolt.png",
+        "stake": 3.5,
+        "sold": false
+    },
+    {
+        "name": "Crowdcube",
+        "logo": "/img/logos/crowdcube.webp",
+        "stake": 1.19,
+        "sold": false
+    },
+    {
+        "name": "Moneybox",
+        "logo": "/img/logos/moneybox.png",
+        "logoNoZoom": true,
+        "stake": 3.51,
+        "sold": false
+    },
+    {
+        "name": "Mous",
+        "logo": "/img/logos/mous.svg",
+        "logoNoZoom": true,
+        "stake": 2.05,
+        "sold": false
+    },
+    {
+        "name": "Nothing",
+        "logo": "/img/logos/nothing.webp",
+        "logoBg" : "bg-[#efefef]",
+        "stake": 2.57,
+        "sold": false
+    },
+    {
+        "name": "Social Tip",
+        "logo": "/img/logos/socialtip.png",
+        "logoBg" : "bg-[#dfff77]",
+        "logoNoZoom": true,
+        "stake": 3.52,
+        "sold": false
+    }
+  ]
